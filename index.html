@@ -3,90 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EIDTH Robot Experience</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            height: 100vh;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: url('your-image-url.jpg'); /* Replace with your image path */
-            background-size: cover;
-            background-position: center;
-            color: #FFFFFF;
-            overflow: hidden;
-            animation: backgroundAnimation 15s linear infinite;
-        }
-        h1 {
-            font-size: 3.5rem;
-            color: #3a86ff; /* Soft blue */
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            animation: fadeIn 1.5s ease-out;
-        }
-        .control-panel {
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(58, 134, 255, 0.5);
-            animation: panelSlide 2s ease-out;
-        }
-        p {
-            font-size: 1.2rem;
-            color: #f1f1f1; /* Soft white */
-            line-height: 1.6;
-            margin: 15px 0;
-        }
-        p strong {
-            color: #3a86ff; /* Soft blue for key text */
-        }
-        @keyframes backgroundAnimation {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
-        }
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes panelSlide {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <title>WEcreategameRS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header class="hero-section">
+        <nav>
+            <div class="logo">WecreategamER</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="game libary\games.html">Games</a></li>
+            </ul>
+        </nav>
+        <div class="hero-content">
+            <h1 class="animated-title">Welcome to the GameingZone</h1>
+            <p>Discover the latest games</p>
+            <button class="cta-button" onclick="window.location.href='game libary/games.html';">Explore Now</button>
 
-    <div class="control-panel">
-        <h1>Welcome to the EIDTH Robot Experience!</h1>
-        <p>1. <strong>Connect to the Robot's Wi-Fi</strong></p>
-        <p>Go to your phone's Wi-Fi settings.</p>
-        <p>Scan the QR code to access the Wi-Fi details.</p>
-
-        <p>2. <strong>Access the Control Panel</strong></p>
-        <p>Open a web browser on your phone.</p>
-        <p>Type the IP address: <strong>192.168.4.1</strong> to access the panel.</p>
-
-        <p>3. <strong>Control the Robot</strong></p>
-        <p>Use the custom application downloaded via the QR code provided.</p>
-
-        <p>Enjoy controlling the robot!</p>
-    </div>
-
+        </div>
+    </header>
+    <section class="games-section">
+        <h2>Featured Games</h2>
+        <div class="games-grid">
+            <div class="game-card">
+                <img src="image/game1.jpg" alt="Game 1">
+                <h3>Hogwarts legacy</h3>
+            </div>
+            <div class="game-card">
+                <img src="image/game2.jpg" alt="Game 2">
+                <h3>Tekken 8</h3>
+            </div>
+            <div class="game-card">
+                <img src="image/game3.jpg" alt="Game 3">
+                <h3>Ghost of Tsushima</h3>
+            </div>
+        </div>
+    </section>
+    <footer>
+    <script src="scripts.js"></script>
 </body>
 </html>
