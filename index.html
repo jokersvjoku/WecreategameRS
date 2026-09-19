@@ -2,46 +2,621 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEcreategameRS</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Anime Crossover: Cursed Technique</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; font-family: 'Courier New', sans-serif; }
+    
+        #ui {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            text-align: center;
+            color: #fff;
+            pointer-events: none;
+            z-index: 10;
+        }
+        
+        h1 { 
+            font-size: 3rem; margin: 0; letter-spacing: 10px; 
+            font-weight: 900; 
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        #technique-name { 
+            font-size: 1.15rem; color: #00ffff; margin-top: 15px; 
+            font-weight: bold; letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            padding: 0 10px;
+        }
+
+        #crossover-tag {
+            font-size: 0.68rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.4);
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        /* Large Centered Camera Hub - Taller for Reel Context */
+        #video-container {
+            position: absolute;
+            bottom: 2%;
+            left: 18%;
+            transform: translateX(-50%) scaleX(-1);
+            width: 85vw;
+            max-width: 450px;
+            height: 42vh; 
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 20;
+            background-color: #000; 
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
+        }
+
+        video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        #output_canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        #grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 5;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+        }
+
+        /* Gesture legend - one hand picks a category, the other hand cycles it */
+        #legend {
+            position: absolute;
+            top: 3%;
+            right: 3%;
+            z-index: 15;
+            color: rgba(255,255,255,0.75);
+            font-size: 0.62rem;
+            letter-spacing: 1px;
+            line-height: 1.85;
+            text-align: right;
+            pointer-events: none;
+            text-shadow: 0 0 6px rgba(0,0,0,0.8);
+            max-width: 58vw;
+        }
+        #legend div span.pose { display: inline-block; width: 1.4em; }
+        #legend-note { color: rgba(255,255,255,0.45); margin-top: 5px; font-style: italic; font-size: 0.58rem; }
+    </style>
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header class="hero-section">
-        <nav>
-            <div class="logo">WecreategamER</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="game libary\games.html">Games</a></li>
-            </ul>
-        </nav>
-        <div class="hero-content">
-            <h1 class="animated-title">Welcome to the GamingZone</h1>
-            <p>Discover the latest games</p>
-            <button class="cta-button" onclick="window.location.href='game libary/games.html';">Explore Now</button>
 
-        </div>
-    </header>
-    <section class="games-section">
-        <h2>Featured Games</h2>
-        <div class="games-grid">
-            <div class="game-card">
-                <img src="image/game1.jpg" alt="Game 1">
-                <h3>Hogwarts legacy</h3>
-            </div>
-            <div class="game-card">
-                <img src="image/game2.jpg" alt="Game 2">
-                <h3>Tekken 8</h3>
-            </div>
-            <div class="game-card">
-                <img src="image/game3.jpg" alt="Game 3">
-                <h3>Ghost of Tsushima</h3>
-            </div>
-        </div>
-    </section>
-    <footer>
-    <script src="scripts.js"></script>
+    <div id="grain"></div>
+
+    <div id="ui">
+        <h1>呪術廻戦</h1>
+        <div id="technique-name">CURSED ENERGY</div>
+        <div id="crossover-tag">呪術廻戦 × 鬼滅の刃 × BLEACH × DOCTOR STRANGE</div>
+    </div>
+
+    <div id="legend">
+        <div><span class="pose">✊</span> Fist — Bankai</div>
+        <div><span class="pose">🖐</span> Open Hand — Malevolent Shrine</div>
+        <div><span class="pose">✌️</span> Peace — Unlimited Void</div>
+        <div><span class="pose">☝️</span> Point — Cursed Technique: Red</div>
+        <div><span class="pose">🤏</span> Pinch — Hollow Purple</div>
+        <div><span class="pose">🤟</span> 3 Fingers — Breathing Styles</div>
+        <div><span class="pose">🤙</span> Pinky — Ten Shadows</div>
+        <div><span class="pose">👍</span> Thumbs Up — Doctor Strange (finger-tutting sparks between your fingertips)</div>
+        <div id="legend-note">hold a style pose, then ☝️ point with your OTHER hand to cycle its list</div>
+    </div>
+
+    <div id="video-container">
+        <video class="input_video"></video>
+        <canvas id="output_canvas"></canvas>
+    </div>
+
+<script type="module">
+    import * as THREE from 'three';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+    // --- Scene & Rendering ---
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 55;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.body.appendChild(renderer.domElement);
+
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+    composer.addPass(bloomPass);
+
+    const COUNT = 20000;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(COUNT * 3);
+    const colors = new Float32Array(COUNT * 3);
+    const sizes = new Float32Array(COUNT);
+    
+    const targetPositions = new Float32Array(COUNT * 3);
+    const targetColors = new Float32Array(COUNT * 3);
+    const targetSizes = new Float32Array(COUNT);
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+    const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.3, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false }));
+    scene.add(particles);
+
+    // ============================================================
+    // BASE JJK TECHNIQUE FUNCTIONS (the original four)
+    // ============================================================
+    function getRed(i) {
+        if(i < COUNT * 0.1) {
+            const r = Math.random() * 9;
+            const theta = Math.random() * 6.28; const phi = Math.acos(2 * Math.random() - 1);
+            return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: 3, g: 0.1, b: 0.1, s: 2.5 };
+        } else {
+            const armCount = 3; const t = (i / COUNT); 
+            const angle = t * 15 + ((i % armCount) * (Math.PI * 2 / armCount));
+            const radius = 2 + (t * 40); 
+            return { x: radius * Math.cos(angle), y: radius * Math.sin(angle), z: (Math.random() - 0.5) * (10 * t), r: 0.8, g: 0, b: 0, s: 1.0 };
+        }
+    }
+
+    function getVoid(i) {
+        if (i < COUNT * 0.15) {
+            const angle = Math.random() * Math.PI * 2;
+            return { x: 26 * Math.cos(angle), y: 26 * Math.sin(angle), z: (Math.random()-0.5) * 1, r: 1, g: 1, b: 1, s: 2.5 };
+        } else {
+            const radius = 30 + Math.random() * 90;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            return { x: radius * Math.sin(phi) * Math.cos(theta), y: radius * Math.sin(phi) * Math.sin(theta), z: radius * Math.cos(phi), r: 0.1, g: 0.6, b: 1.0, s: 0.7 };
+        }
+    }
+
+    function getPurple(i) {
+        if (Math.random() > 0.8) return { x: (Math.random() - 0.5) * 100, y: (Math.random() - 0.5) * 100, z: (Math.random() - 0.5) * 100, r: 0.5, g: 0.5, b: 0.7, s: 0.8 };
+        const r = 20; const theta = Math.random() * Math.PI * 2; const phi = Math.acos(2 * Math.random() - 1);
+        return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: 0.6, g: 0.5, b: 1.0, s: 2.5 };
+    }
+
+    function getShrine(i) {
+        const total = COUNT;
+        if (i < total * 0.3) return { x: (Math.random()-0.5)*80, y: -15, z: (Math.random()-0.5)*80, r: 0.4, g: 0, b: 0, s: 0.8 };
+        else if (i < total * 0.4) {
+            const px = ((i%4)<2?1:-1)*12; const pz = ((i%4)%2==0?1:-1)*8;
+            return { x: px+(Math.random()-0.5)*2, y: -15+Math.random()*30, z: pz+(Math.random()-0.5)*2, r: 0.2, g: 0.2, b: 0.2, s: 0.6 };
+        } else if (i < total * 0.6) {
+            const t = Math.random() * Math.PI * 2; const rad = Math.random() * 30;
+            const curve = Math.pow(rad/30, 2) * 10; 
+            return { x: rad*Math.cos(t), y: 15 - curve + (Math.random()*2), z: rad*Math.sin(t)*0.6, r: 0.6, g: 0, b: 0, s: 0.6 };
+        } else return { x: 0, y: 0, z: 0, r: 0, g: 0, b: 0, s: 0 };
+    }
+
+    // Domain Expansion: Chimera Shadow Garden - Mahoraga's eight-spoked wheel, adaptation made manifest
+    function getMahoraga(i) {
+        const spokeCount = 8;
+        if (i < COUNT * 0.12) {
+            const angle = Math.random() * Math.PI * 2;
+            return { x: 32 * Math.cos(angle), y: 32 * Math.sin(angle), z: (Math.random()-0.5) * 2, r: 1, g: 1, b: 1, s: 2.2 };
+        } else if (i < COUNT * 0.8) {
+            const spokeAngle = (i % spokeCount) / spokeCount * Math.PI * 2;
+            const dist = Math.random() * 30;
+            const jitter = (Math.random() - 0.5) * 1.4;
+            return {
+                x: dist * Math.cos(spokeAngle) + jitter,
+                y: dist * Math.sin(spokeAngle) + jitter,
+                z: (Math.random()-0.5) * 2,
+                r: 0.9, g: 0.08, b: 0.08, s: 1.0
+            };
+        } else {
+            const r = Math.random() * 5;
+            const theta = Math.random() * 6.28;
+            return { x: r * Math.cos(theta), y: r * Math.sin(theta), z: (Math.random()-0.5) * 3, r: 1, g: 1, b: 1, s: 1.8 };
+        }
+    }
+
+    // ============================================================
+    // SHAPE FACTORIES - shared building blocks for every crossover technique
+    // ============================================================
+    function hex01(hex) {
+        const v = parseInt(hex.slice(1), 16);
+        return { r: ((v >> 16) & 255) / 255, g: ((v >> 8) & 255) / 255, b: (v & 255) / 255 };
+    }
+
+    // Rising/coiling spiral - used for breathing forms and dragon-style Bankai
+    function makeSpiral({ turns = 5, rBase = 8, rVar = 4, rFreq = 5, heightRange = 50, hex, scatterFrac = 0.12, sizeBase = 0.9, sizeVar = 0.6, jaggy = 0 }) {
+        const c = hex01(hex);
+        return function (i) {
+            if (Math.random() < scatterFrac) {
+                return { x: (Math.random() - 0.5) * 70, y: (Math.random() - 0.5) * 70, z: (Math.random() - 0.5) * 70, r: c.r, g: c.g, b: c.b, s: 0.5 };
+            }
+            const t = i / COUNT;
+            let angle = t * Math.PI * 2 * turns;
+            if (jaggy) angle += (Math.random() - 0.5) * jaggy;
+            const height = (t - 0.5) * heightRange;
+            const radius = rBase + Math.sin(t * Math.PI * rFreq) * rVar + Math.random();
+            return {
+                x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle),
+                r: Math.min(1, c.r + Math.random() * 0.08), g: Math.min(1, c.g + Math.random() * 0.08), b: Math.min(1, c.b + Math.random() * 0.08),
+                s: sizeBase + Math.random() * sizeVar
+            };
+        };
+    }
+
+    // Concentric ring(s) with a glowing core - portals, mandalas, sound waves
+    function makeRing({ ringRadius = 25, thickness = 3, hex, coreHex = null, coreFrac = 0.15, sizeBase = 1.2, rings = 1 }) {
+        const c = hex01(hex);
+        const cc = hex01(coreHex || hex);
+        return function () {
+            if (Math.random() < coreFrac) {
+                const r = Math.random() * 4;
+                const th = Math.random() * 6.28;
+                return { x: r * Math.cos(th), y: r * Math.sin(th), z: (Math.random() - 0.5) * 2, r: cc.r, g: cc.g, b: cc.b, s: sizeBase + 0.5 };
+            }
+            const ringPick = Math.floor(Math.random() * rings);
+            const rad = ringRadius * (1 - ringPick * 0.28) + (Math.random() - 0.5) * thickness;
+            const angle = Math.random() * 6.28;
+            return { x: rad * Math.cos(angle), y: rad * Math.sin(angle), z: (Math.random() - 0.5) * thickness, r: c.r, g: c.g, b: c.b, s: sizeBase };
+        };
+    }
+
+    // Vertical eruption - Bankai releases, heavy shikigami impacts
+    function makePillar({ coreHex, edgeHex, coreFrac = 0.08, heightRange = 65, radiusMax = 24, curvePow = 1.3, angularSpeed = 0.35 }) {
+        const cc = hex01(coreHex), ec = hex01(edgeHex);
+        return function () {
+            if (Math.random() < coreFrac) {
+                const y = (Math.random() - 0.5) * heightRange;
+                const r = Math.random() * 1.8;
+                const th = Math.random() * 6.28;
+                return { x: r * Math.cos(th), y, z: r * Math.sin(th), r: cc.r, g: cc.g, b: cc.b, s: 1.6 };
+            }
+            const t = Math.random();
+            const height = (t - 0.5) * heightRange;
+            const radius = 2 + Math.pow(Math.abs(height) / (heightRange / 2), curvePow) * radiusMax + Math.random() * 3;
+            const angle = height * angularSpeed + Math.random() * 6.28;
+            return { x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle), r: ec.r, g: ec.g, b: ec.b, s: 1.1 };
+        };
+    }
+
+    // Soft volumetric blob - Toad, Rabbit Escape, fog-type effects
+    function makeCloud({ hex, radius = 45, sizeBase = 0.8, sizeVar = 0.6 }) {
+        const c = hex01(hex);
+        return function () {
+            const th = Math.random() * 6.28, ph = Math.acos(2 * Math.random() - 1);
+            const r = Math.random() * radius;
+            return { x: r * Math.sin(ph) * Math.cos(th), y: r * Math.sin(ph) * Math.sin(th), z: r * Math.cos(ph), r: c.r, g: c.g, b: c.b, s: sizeBase + Math.random() * sizeVar };
+        };
+    }
+
+    // Even, chaotic scatter - petal storms, shattering dimensions
+    function makeStorm({ hex, hex2 = null, radius = 40, sizeBase = 0.7, sizeVar = 0.5 }) {
+        const c = hex01(hex);
+        const c2 = hex2 ? hex01(hex2) : c;
+        return function () {
+            const useC = Math.random() > 0.5 ? c : c2;
+            const theta = Math.random() * 6.28, phi = Math.acos(2 * Math.random() - 1);
+            const r = Math.cbrt(Math.random()) * radius;
+            return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: useC.r, g: useC.g, b: useC.b, s: sizeBase + Math.random() * sizeVar };
+        };
+    }
+
+    // Bankai #1: Black Moon Fang (the original vertical reiatsu pillar)
+    function getBankaiCore(i) {
+        if (i < COUNT * 0.08) {
+            const y = (Math.random() - 0.5) * 65;
+            const r = Math.random() * 1.8;
+            const theta = Math.random() * 6.28;
+            return { x: r * Math.cos(theta), y: y, z: r * Math.sin(theta), r: 0.08, g: 0.02, b: 0.02, s: 1.6 };
+        } else {
+            const t = Math.random();
+            const height = (t - 0.5) * 70;
+            const radius = 2 + Math.pow(Math.abs(height) / 35, 1.3) * 22 + Math.random() * 3;
+            const angle = height * 0.35 + Math.random() * 6.28;
+            return { x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle), r: 0.9, g: 0.05, b: 0.02, s: 1.1 };
+        }
+    }
+
+    // Sun Breathing: Dance of the Fire God - the rising flame dragon that opens the Breathing list
+    function getSunBreathing(i) {
+        if (Math.random() > 0.85) {
+            return { x: (Math.random() - 0.5) * 70, y: (Math.random() - 0.5) * 70, z: (Math.random() - 0.5) * 70, r: 1.0, g: 0.35, b: 0.0, s: 0.6 };
+        }
+        const t = i / COUNT;
+        const turns = 6;
+        const angle = t * Math.PI * 2 * turns;
+        const height = (t - 0.5) * 55;
+        const radius = 7 + Math.sin(t * Math.PI * 5) * 4 + Math.random();
+        return {
+            x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle),
+            r: 1.0, g: 0.25 + Math.random() * 0.4, b: 0.0,
+            s: 0.9 + Math.random() * 0.8
+        };
+    }
+
+    // ============================================================
+    // CATEGORY ROSTERS - hold a category pose, point with the other hand to cycle
+    // ============================================================
+    const CATEGORY_LISTS = {
+        breathing: [
+            { name: "Sun Breathing: Dance of the Fire God", color: '#ff8800', gen: getSunBreathing },
+            { name: "Water Breathing, Eleventh Form: Dead Calm (Giyu Tomioka)", color: '#2299ff', gen: makeSpiral({ turns: 4, rBase: 9, rVar: 6, rFreq: 3, heightRange: 50, hex: '#2299ff', scatterFrac: 0.10 }) },
+            { name: "Flame Breathing, Ninth Form: Rengoku (Kyojuro Rengoku)", color: '#ff3300', gen: makeSpiral({ turns: 8, rBase: 6, rVar: 3, rFreq: 7, heightRange: 45, hex: '#ff3300', scatterFrac: 0.22 }) },
+            { name: "Wind Breathing, Ninth Form: Idaten Typhoon (Sanemi Shinazugawa)", color: '#bbffcc', gen: makeSpiral({ turns: 7, rBase: 10, rVar: 7, rFreq: 6, heightRange: 60, hex: '#bbffcc', scatterFrac: 0.25, jaggy: 0.5 }) },
+            { name: "Love Breathing, Fifth Form: Swaying Love, Wildclaw (Mitsuri Kanroji)", color: '#ff66aa', gen: makeSpiral({ turns: 5, rBase: 8, rVar: 5, rFreq: 2, heightRange: 40, hex: '#ff66aa', scatterFrac: 0.12 }) },
+            { name: "Insect Breathing, First Form: Butterfly Dance, Caprice (Shinobu Kocho)", color: '#aa66ff', gen: makeSpiral({ turns: 3, rBase: 12, rVar: 8, rFreq: 4, heightRange: 35, hex: '#aa66ff', scatterFrac: 0.40, sizeBase: 0.7 }) },
+            { name: "Serpent Breathing, First Form: Winding Serpent Slash (Obanai Iguro)", color: '#e0ccff', gen: makeSpiral({ turns: 10, rBase: 5, rVar: 2, rFreq: 8, heightRange: 55, hex: '#e0ccff', scatterFrac: 0.08 }) },
+            { name: "Stone Breathing, Fifth Form: Arcs of Justice (Gyomei Himejima)", color: '#998866', gen: makeSpiral({ turns: 2, rBase: 14, rVar: 3, rFreq: 1, heightRange: 30, hex: '#998866', scatterFrac: 0.10, sizeBase: 1.6, sizeVar: 0.4 }) },
+            { name: "Sound Breathing, Fourth Form: Constant Resounding Slashes (Tengen Uzui)", color: '#ffb000', gen: makeRing({ ringRadius: 26, thickness: 4, rings: 3, hex: '#ffb000', coreHex: '#7fffe0', coreFrac: 0.14, sizeBase: 1.3 }) },
+            { name: "Mist Breathing, Fourth Form: Shifting Flow Slash (Muichiro Tokito)", color: '#bdf5ff', gen: makeSpiral({ turns: 4, rBase: 9, rVar: 5, rFreq: 3, heightRange: 45, hex: '#bdf5ff', scatterFrac: 0.50, sizeBase: 0.6, sizeVar: 0.4 }) }
+        ],
+        shadows: [
+            { name: "Ten Shadows — Divine Dogs", color: '#ccccff', gen: makeRing({ ringRadius: 20, thickness: 5, rings: 2, hex: '#ccccff', coreHex: '#ffffff', coreFrac: 0.22, sizeBase: 1.4 }) },
+            { name: "Ten Shadows — Nue (owl scout)", color: '#93a8d6', gen: makeSpiral({ turns: 5, rBase: 12, rVar: 5, rFreq: 3, heightRange: 55, hex: '#93a8d6', scatterFrac: 0.20, jaggy: 0.15 }) },
+            { name: "Ten Shadows — Great Serpent", color: '#33aa33', gen: makeSpiral({ turns: 9, rBase: 16, rVar: 4, rFreq: 6, heightRange: 40, hex: '#33aa33', scatterFrac: 0.08, sizeBase: 1.3 }) },
+            { name: "Ten Shadows — Max Elephant", color: '#8a7a63', gen: makePillar({ coreHex: '#55483a', edgeHex: '#8a7a63', heightRange: 40, radiusMax: 30, curvePow: 1.6, angularSpeed: 0.15 }) },
+            { name: "Ten Shadows — Round Deer (healing)", color: '#bbffcc', gen: makeRing({ ringRadius: 18, thickness: 6, rings: 2, hex: '#bbffcc', coreHex: '#eafff0', coreFrac: 0.30, sizeBase: 1.0 }) },
+            { name: "Ten Shadows — Rabbit Escape", color: '#eeeeee', gen: makeCloud({ hex: '#eeeeee', radius: 50, sizeBase: 0.5, sizeVar: 0.7 }) },
+            { name: "Ten Shadows — Piercing Ox", color: '#aa1111', gen: makePillar({ coreHex: '#220000', edgeHex: '#aa1111', heightRange: 70, radiusMax: 10, curvePow: 0.6, angularSpeed: 0.05 }) },
+            { name: "Ten Shadows — Toad", color: '#225522', gen: makeCloud({ hex: '#225522', radius: 38, sizeBase: 1.4, sizeVar: 0.8 }) },
+            { name: "Devine gernal Mahoraga", color: '#ffffff', gen: getMahoraga }
+        ],
+        bankai: [
+            { name: "Bankai: Tensa Zangetsu (Ichigo Kurosaki)", color: '#aa0000', gen: getBankaiCore },
+            { name: "Bankai: Senbonzakura Kageyoshi (Byakuya Kuchiki)", color: '#ffb6d5', gen: makeStorm({ hex: '#ffb6d5', hex2: '#ffffff', radius: 42 }) },
+            { name: "Bankai: Daiguren Hyorinmaru (Toshiro Hitsugaya)", color: '#66ccff', gen: makeSpiral({ turns: 5, rBase: 9, rVar: 7, rFreq: 4, heightRange: 55, hex: '#66ccff', scatterFrac: 0.18, sizeBase: 1.2 }) }
+        ],
+        strange: [
+            { name: "Eye of Agamotto: Time Stone", color: '#33ff88', gen: makeRing({ ringRadius: 22, thickness: 3, rings: 3, hex: '#33ff88', coreHex: '#ccffe0', coreFrac: 0.16, sizeBase: 1.2 }) },
+            { name: "Sling Ring: Portal", color: '#ff9900', gen: makeRing({ ringRadius: 24, thickness: 5, rings: 1, hex: '#ff9900', coreHex: '#fff0cc', coreFrac: 0.28, sizeBase: 1.4 }) },
+            { name: "Mirror Dimension", color: '#aa55ff', gen: makeStorm({ hex: '#aa55ff', hex2: '#ff9944', radius: 46 }) }
+        ]
+    };
+    const CATEGORY_META = {
+        breathing: { bloom: 2.6, shake: 0.28 },
+        shadows: { bloom: 2.4, shake: 0.40 },
+        bankai: { bloom: 3.2, shake: 0.60 },
+        strange: { bloom: 3.0, shake: 0.32 }
+    };
+    const CATEGORY_KEYS = Object.keys(CATEGORY_LISTS);
+
+    // ============================================================
+    // Hand Tracking
+    // ============================================================
+    let currentTech = 'neutral';
+    let shakeIntensity = 0;
+    const videoElement = document.querySelector('.input_video');
+    const canvasElement = document.getElementById('output_canvas');
+    const canvasCtx = canvasElement.getContext('2d');
+    let glowColor = '#00ffff';
+
+    const subIndex = { breathing: 0, shadows: 0, bankai: 0, strange: 0 };
+    let prevAdvancePose = false;
+
+    // Doctor Strange's spellcasting look is built from "finger-tutting" - the intricate,
+    // precise finger choreography (taught to Cumberbatch by dancer/choreographer Julian Andrews)
+    // used throughout the MCU films, including the identity spell in No Way Home. This draws
+    // glowing threads of light between the fingertips to mimic that cat's-cradle-of-magic look.
+    function drawStrangeStrings(ctx, lm, t) {
+        const w = canvasElement.width, h = canvasElement.height;
+        if (!w || !h) return;
+        const tipIdx = [4, 8, 12, 16, 20];
+        const pts = tipIdx.map((i) => ({ x: lm[i].x * w, y: lm[i].y * h }));
+        ctx.save();
+        ctx.strokeStyle = '#ff9900';
+        ctx.shadowColor = '#ff9900';
+        ctx.shadowBlur = 14;
+        ctx.lineWidth = 1.6;
+        for (let a = 0; a < pts.length; a++) {
+            for (let b = a + 1; b < pts.length; b++) {
+                const pulse = 0.5 + 0.5 * Math.sin(t * 0.006 + a * 1.7 + b * 2.3);
+                ctx.globalAlpha = 0.2 + 0.55 * pulse;
+                const mx = (pts[a].x + pts[b].x) / 2 + Math.sin(t * 0.004 + a * 2 + b) * 12;
+                const my = (pts[a].y + pts[b].y) / 2 + Math.cos(t * 0.004 + b * 2 + a) * 12;
+                ctx.beginPath();
+                ctx.moveTo(pts[a].x, pts[a].y);
+                ctx.quadraticCurveTo(mx, my, pts[b].x, pts[b].y);
+                ctx.stroke();
+            }
+        }
+        ctx.restore();
+    }
+
+    // Classifies a single hand's landmarks into one pose/category
+    function classifyHand(lm) {
+        const isUp = (t, p) => lm[t].y < lm[p].y;
+        const pinch = Math.hypot(lm[8].x - lm[4].x, lm[8].y - lm[4].y);
+        const iUp = isUp(8, 6), mUp = isUp(12, 10), rUp = isUp(16, 14), pUp = isUp(20, 18);
+        const thumbUp = isUp(4, 3) && !iUp && !mUp && !rUp && !pUp;
+
+        if (pinch < 0.04) return 'purple';
+        if (thumbUp) return 'strange';
+        if (iUp && mUp && rUp && pUp) return 'shrine';
+        if (iUp && mUp && rUp && !pUp) return 'breathing';
+        if (iUp && mUp && !rUp) return 'void';
+        if (iUp && !mUp) return 'red';
+        if (!iUp && !mUp && !rUp && pUp) return 'shadows';
+        if (!iUp && !mUp && !rUp && !pUp) return 'bankai';
+        return 'neutral';
+    }
+
+    const hands = new Hands({locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`});
+    hands.setOptions({ maxNumHands: 2, modelComplexity: 1, minDetectionConfidence: 0.7 });
+
+    hands.onResults((results) => {
+        canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+        const poses = [];
+
+        const now = performance.now();
+        if (results.multiHandLandmarks) {
+            results.multiHandLandmarks.forEach((lm) => {
+                drawConnectors(canvasCtx, lm, HAND_CONNECTIONS, {color: glowColor, lineWidth: 5});
+                drawLandmarks(canvasCtx, lm, {color: '#fff', lineWidth: 1, radius: 2});
+                const pose = classifyHand(lm);
+                poses.push(pose);
+                if (pose === 'strange') drawStrangeStrings(canvasCtx, lm, now);
+            });
+        }
+
+        // One hand holds a category pose; pointing with the OTHER hand cycles its roster
+        const primaryCategory = poses.find((p) => CATEGORY_KEYS.includes(p));
+        const advancing = poses.length > 1 && !!primaryCategory && poses.includes('red');
+
+        if (advancing && !prevAdvancePose) {
+            subIndex[primaryCategory] = (subIndex[primaryCategory] + 1) % CATEGORY_LISTS[primaryCategory].length;
+        }
+        prevAdvancePose = advancing;
+
+        let detected;
+        if (primaryCategory) detected = `${primaryCategory}:${subIndex[primaryCategory]}`;
+        else if (poses.length > 0) detected = poses[0];
+        else detected = 'neutral';
+
+        updateState(detected);
+    });
+
+    function updateState(tech) {
+        if(currentTech === tech) return;
+        currentTech = tech;
+        const nameEl = document.getElementById('technique-name');
+
+        const sep = tech.indexOf(':');
+        const cat = sep === -1 ? tech : tech.slice(0, sep);
+        const idx = sep === -1 ? 0 : parseInt(tech.slice(sep + 1), 10);
+
+        let name, color, bloomStrength, shake, genFn;
+        const list = CATEGORY_LISTS[cat];
+
+        if (list) {
+            const entry = list[idx];
+            name = `${entry.name}  (${idx + 1}/${list.length})`;
+            color = entry.color;
+            bloomStrength = CATEGORY_META[cat].bloom;
+            shake = CATEGORY_META[cat].shake;
+            genFn = entry.gen;
+        } else if (cat === 'shrine') {
+            name = "Domain Expansion: Malevolent Shrine (Ryomen Sukuna)"; color = '#ff0000'; bloomStrength = 2.5; shake = 0.5; genFn = getShrine;
+        } else if (cat === 'purple') {
+            name = "Hollow Technique: Purple (Satoru Gojo)"; color = '#bb00ff'; bloomStrength = 4.0; shake = 0.5; genFn = getPurple;
+        } else if (cat === 'void') {
+            name = "Domain Expansion: Unlimited Void (Satoru Gojo)"; color = '#00ffff'; bloomStrength = 2.0; shake = 0.3; genFn = getVoid;
+        } else if (cat === 'red') {
+            name = "Cursed Technique Reversal: Red (Satoru Gojo)"; color = '#ff3333'; bloomStrength = 2.5; shake = 0.3; genFn = getRed;
+        } else {
+            name = "Neutral State"; color = '#00ffff'; bloomStrength = 1.0; shake = 0; genFn = null;
+        }
+
+        glowColor = color;
+        bloomPass.strength = bloomStrength;
+        shakeIntensity = shake;
+        nameEl.innerText = name;
+        nameEl.style.color = color;
+        nameEl.style.textShadow = `0 0 10px ${color}, 0 0 22px ${color}`;
+
+        for(let i=0; i<COUNT; i++) {
+            let p;
+            if (!genFn) {
+                if(i < COUNT * 0.05) {
+                    const r = 15 + Math.random()*20; const t = Math.random()*6.28; const ph = Math.random()*3.14;
+                    p = { x: r*Math.sin(ph)*Math.cos(t), y: r*Math.sin(ph)*Math.sin(t), z: r*Math.cos(ph), r: 0.1, g: 0.1, b: 0.2, s: 0.4 };
+                } else p = { x:0, y:0, z:0, r:0, g:0, b:0, s:0 };
+            } else {
+                p = genFn(i);
+            }
+            
+            targetPositions[i*3] = p.x; targetPositions[i*3+1] = p.y; targetPositions[i*3+2] = p.z;
+            targetColors[i*3] = p.r; targetColors[i*3+1] = p.g; targetColors[i*3+2] = p.b;
+            targetSizes[i] = p.s;
+        }
+    }
+
+    const cameraUtils = new Camera(videoElement, {
+        onFrame: async () => {
+            canvasElement.width = videoElement.videoWidth;
+            canvasElement.height = videoElement.videoHeight;
+            await hands.send({image: videoElement});
+        }, width: 640, height: 480
+    });
+    cameraUtils.start();
+
+    // Animation
+    function animate() {
+        requestAnimationFrame(animate);
+        
+        if (shakeIntensity > 0) {
+            renderer.domElement.style.transform = `translate(${(Math.random()-0.5)*shakeIntensity*40}px, ${(Math.random()-0.5)*shakeIntensity*40}px)`;
+        } else {
+            renderer.domElement.style.transform = 'translate(0,0)';
+        }
+
+        const pos = particles.geometry.attributes.position.array;
+        const col = particles.geometry.attributes.color.array;
+        const siz = particles.geometry.attributes.size.array;
+
+        for(let i=0; i<COUNT*3; i++) {
+            pos[i] += (targetPositions[i] - pos[i]) * 0.1;
+            col[i] += (targetColors[i] - col[i]) * 0.1;
+        }
+        for(let i=0; i<COUNT; i++) siz[i] += (targetSizes[i] - siz[i]) * 0.1;
+
+        particles.geometry.attributes.position.needsUpdate = true;
+        particles.geometry.attributes.color.needsUpdate = true;
+        particles.geometry.attributes.size.needsUpdate = true;
+        
+        // ROTATION LOGIC: driven by the current category
+        const cat = currentTech.indexOf(':') === -1 ? currentTech : currentTech.slice(0, currentTech.indexOf(':'));
+        if (cat === 'red') {
+            particles.rotation.z -= 0.1;
+        } else if (cat === 'purple') {
+            particles.rotation.z += 0.2; 
+            particles.rotation.y += 0.05;
+        } else if (cat === 'shrine') {
+            // FORCE UPRIGHT: Reset and freeze all rotations
+            particles.rotation.set(0, 0, 0); 
+        } else if (cat === 'shadows') {
+            // Shikigami stay upright, wheel-spin steadily (Mahoraga's adaptation)
+            particles.rotation.x = 0; particles.rotation.y = 0; particles.rotation.z += 0.07;
+        } else if (cat === 'bankai') {
+            // Vertical release: upright, slow deliberate turn
+            particles.rotation.x = 0; particles.rotation.z = 0; particles.rotation.y += 0.02;
+        } else if (cat === 'breathing') {
+            // Flowing dance-like motion for breathing forms
+            particles.rotation.y += 0.035; particles.rotation.z += 0.012;
+        } else if (cat === 'strange') {
+            // Mystical circle spin, upright
+            particles.rotation.x = 0; particles.rotation.y = 0; particles.rotation.z += 0.05;
+        } else {
+            // Default Neutral rotation
+            particles.rotation.y += 0.005;
+        }
+
+        composer.render();
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        composer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
 </body>
 </html>
-
