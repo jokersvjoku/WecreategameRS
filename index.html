@@ -1,622 +1,341 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Anime Crossover: Cursed Technique</title>
-    <style>
-        body { margin: 0; overflow: hidden; background-color: #000; font-family: 'Courier New', sans-serif; }
-    
-        #ui {
-            position: absolute;
-            top: 10%;
-            width: 100%;
-            text-align: center;
-            color: #fff;
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        h1 { 
-            font-size: 3rem; margin: 0; letter-spacing: 10px; 
-            font-weight: 900; 
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(to bottom, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        #technique-name { 
-            font-size: 1.15rem; color: #00ffff; margin-top: 15px; 
-            font-weight: bold; letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            padding: 0 10px;
-        }
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NIAT Sucks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
 
-        #crossover-tag {
-            font-size: 0.68rem;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.4);
-            margin-top: 8px;
-            font-weight: 400;
-        }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+:root{--paper:#f2efe7;--ink:#171717;--muted:#6d6a63;--red:#d92d20;--yellow:#f3d34a;--line:#d2cec4;--card:#fffdf7;--display:'Space Grotesk',sans-serif;--body:'DM Sans',sans-serif;--mono:'DM Mono',monospace;color-scheme:light}
+:root[data-theme="dark"]{--paper:#111211;--ink:#f2efe7;--muted:#aaa69d;--line:#393a36;--card:#1b1d1a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--body);padding:0 0 70px}
+a{color:inherit;text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:auto;padding:0 28px}
+.mono,.bar,.cat,.kicker,.eyebrow{font:11px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.bar{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 0;color:var(--muted);border-bottom:1px solid var(--line)}
+.bar span:last-child{text-align:right}
+.topnav{position:sticky;top:0;z-index:30;margin:0 -28px;padding:12px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.brand{font:700 17px var(--display);letter-spacing:-.06em;text-decoration:none}
+.brand em{font-style:normal;color:var(--red)}
+.navlinks{display:flex;gap:22px;align-items:center;flex-wrap:wrap}
+.navlinks a{font:10px var(--mono);text-decoration:none;color:var(--muted);letter-spacing:.07em}
+.navlinks a:hover{color:var(--red)}
+.theme-toggle{background:transparent!important;color:var(--ink)!important;border:1px solid var(--line)!important;padding:7px 10px!important;font:10px var(--mono)!important}
+.hero{padding:52px 0 38px}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:32px;align-items:stretch}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:12px 0}
+.eyebrow{display:flex;align-items:center;gap:9px;color:var(--red);margin-bottom:20px}
+.eyebrow:before{content:"";width:28px;height:2px;background:var(--red)}
+h1{font:700 clamp(3.4rem,7.3vw,7.2rem)/.88 var(--display);letter-spacing:-.085em;text-transform:uppercase;margin:0 0 24px;max-width:9ch}
+h1 mark{background:var(--yellow);color:#171717;padding:0 .09em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lede{font-size:1.05rem;max-width:58ch;margin:0 0 13px;color:var(--muted)}
+.lede:first-of-type{color:var(--ink)}
+.hero-visual{position:relative;min-height:550px;background:#222;overflow:hidden}
+.hero-visual img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;filter:grayscale(100%) contrast(1.1);opacity:.88}
+.hero-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.82),transparent 58%),linear-gradient(90deg,rgba(0,0,0,.12),transparent)}
+.photo-label{position:absolute;z-index:2;left:22px;bottom:22px;right:22px;color:white}
+.photo-label strong{display:block;font:700 clamp(1.7rem,3vw,2.7rem)/.95 var(--display);letter-spacing:-.05em;text-transform:uppercase;max-width:12ch}
+.photo-label small{display:block;margin-top:10px;font:10px var(--mono);letter-spacing:.08em;color:#ddd}
+.photo-stamp{position:absolute;z-index:3;right:18px;top:18px;background:var(--yellow);color:#171717;padding:10px 13px;font:11px var(--mono);transform:rotate(4deg)}
+.figures{display:grid;grid-template-columns:repeat(3,1fr);margin-top:38px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.fig{padding:22px 22px 22px 0}
+.fig+.fig{padding-left:22px;border-left:1px solid var(--line)}
+.fig b{display:block;font:700 clamp(1.7rem,3.8vw,3rem)/1 var(--display);letter-spacing:-.06em}
+.fig span{display:block;color:var(--muted);font-size:.82rem;line-height:1.45;margin:8px 0}
+.fig a{font:10px var(--mono);color:var(--red)}
+.notice{margin-top:25px;padding:16px 18px;background:var(--yellow);color:#171717;font-size:.9rem;border-left:5px solid var(--red)}
+.notice b{font-weight:900;text-transform:uppercase}
+.ticker{overflow:hidden;white-space:nowrap;background:var(--red);color:white;margin:40px calc((1240px - 100vw)/2) 0;padding:12px 0;font:11px var(--mono);letter-spacing:.13em}
+.ticker span{display:inline-block;padding-left:25px}
+.sec{padding-top:86px;scroll-margin-top:90px}
+.section-top{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:26px;border-bottom:2px solid var(--ink);padding-bottom:17px}
+.section-number{font:11px var(--mono);color:var(--red)}
+h2{font:700 clamp(2.2rem,5vw,4.4rem)/.95 var(--display);letter-spacing:-.07em;text-transform:uppercase;margin:0;max-width:14ch}
+.sec>p.sub{max-width:65ch;color:var(--muted);margin:0 0 24px}
+.problem-tools{display:flex;gap:10px;align-items:center;margin:0 0 24px;flex-wrap:wrap}
+.problem-tools input,.problem-tools select{font:13px var(--body);padding:12px 14px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:0}
+.problem-tools input{flex:1;min-width:220px}
+.result-count{font:10px var(--mono);color:var(--muted)}
+.problem{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px 55px;padding:30px 0;border-top:1px solid var(--line)}
+.problem:last-child{border-bottom:1px solid var(--line)}
+.cat{display:inline-block;color:var(--red);border:1px solid var(--red);padding:5px 8px}
+h3{font:700 1.55rem/1.08 var(--display);letter-spacing:-.045em;text-transform:uppercase;margin:13px 0 0}
+.body p{max-width:75ch;margin:0 0 14px}
+.srcs{display:flex;gap:7px;flex-wrap:wrap;list-style:none;padding:0;margin:18px 0}
+.srcs a{display:inline-block;border:1px solid var(--line);padding:5px 9px;text-decoration:none;font:10px var(--mono);background:var(--card)}
+.srcs a:hover{border-color:var(--red);color:var(--red)}
+.fix{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--red);padding:17px 19px;margin-top:18px}
+.fix .mono{display:block;color:var(--red);margin-bottom:5px}
+.fix p{margin:0}
+.fair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fair div{background:var(--card);border:1px solid var(--line);padding:25px;position:relative}
+.fair div:first-child{border-top:5px solid var(--ink)}
+.fair div:last-child{border-top:5px solid var(--yellow)}
+.fair h3{margin:0 0 14px;font-size:1.3rem}
+.fair ul{padding-left:20px;margin:0}
+.fair li{margin:0 0 10px}
+.check-wrap{background:var(--ink);color:var(--paper);padding:30px}
+.check-head{display:flex;justify-content:space-between;gap:12px;color:#aaa;font:10px var(--mono);text-transform:uppercase}
+.progress-track{height:5px;background:#555;margin:12px 0 18px}
+.progress-fill{height:100%;width:0;background:var(--yellow);transition:width .2s}
+.check{display:block}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:14px;padding:17px 0;border-bottom:1px solid #444;cursor:pointer}
+.check label:last-child{border:0}
+.check input{width:18px;height:18px;margin-top:4px;accent-color:var(--yellow)}
+.check input:checked+span{color:#999;text-decoration:line-through}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{font:600 12px var(--mono);letter-spacing:.02em;padding:13px 16px;background:var(--yellow);color:#171717;border:0;cursor:pointer}
+button:hover{filter:brightness(.94)}
+button.secondary{background:transparent;color:var(--paper);border:1px solid #666}
+#copied{font-size:12px;color:var(--yellow)}
+#fallback{width:100%;min-height:180px;margin-top:14px;background:#202020;color:white;border:1px solid #555;padding:12px;font:12px var(--mono)}
+.sources ol{padding-left:22px}
+.sources li{margin:0 0 17px;padding-left:4px}
+.sources li::marker{font:11px var(--mono);color:var(--red)}
+.sources a{font-weight:700}
+.sources small{display:block;color:var(--muted);font-size:.82rem;margin-top:3px}
+footer{margin-top:80px;border-top:2px solid var(--ink);padding:25px 0 0;color:var(--muted);font-size:.85rem;max-width:75ch}
+.backtop{position:fixed;right:22px;bottom:22px;z-index:40;width:44px;height:44px;border-radius:50%;padding:0;background:var(--red);color:white;font-size:18px}
+.reading-progress{position:fixed;top:0;left:0;height:3px;background:var(--red);width:0;z-index:60}
+.problem[hidden]{display:none!important}
+@media(max-width:800px){.wrap{padding:0 18px}.topnav{margin:0 -18px;padding:11px 18px}.hero-grid{grid-template-columns:1fr}.hero-visual{min-height:390px;grid-row:1}.hero-copy{padding:15px 0 0}h1{font-size:clamp(3.4rem,15vw,6rem);max-width:10ch}.problem{grid-template-columns:1fr;gap:10px}.fair{grid-template-columns:1fr}.ticker{margin-left:-18px;margin-right:-18px}.sec{padding-top:65px}}
+@media(max-width:520px){.navlinks{gap:10px}.navlinks a{font-size:9px}.navlinks a:nth-child(2){display:none}.bar{font-size:9px}.bar span:last-child{max-width:45%}.figures{grid-template-columns:1fr}.fig,.fig+.fig{padding:15px 0;border-left:0}.fig+.fig{border-top:1px solid var(--line)}.hero-visual{min-height:340px}.section-top{align-items:start}.section-number{padding-top:7px}.check-wrap{padding:20px 15px}.actions button{width:100%}}
 
-        /* Large Centered Camera Hub - Taller for Reel Context */
-        #video-container {
-            position: absolute;
-            bottom: 2%;
-            left: 18%;
-            transform: translateX(-50%) scaleX(-1);
-            width: 85vw;
-            max-width: 450px;
-            height: 42vh; 
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            z-index: 20;
-            background-color: #000; 
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 0 40px rgba(0,0,0,0.9);
-        }
+.visual-strip{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.visual-strip figure{margin:0;position:relative;height:210px;overflow:hidden;background:#222}
+.visual-strip img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%);transition:transform .5s}
+.visual-strip figure:hover img{transform:scale(1.04)}
+.visual-strip figcaption{position:absolute;inset:auto 0 0;padding:32px 15px 12px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.8));font:11px var(--mono);letter-spacing:.08em}
+.visual-strip figcaption span{float:right;font-size:9px;color:#ddd}
+@media(max-width:520px){.visual-strip{grid-template-columns:1fr}.visual-strip figure{height:180px}.visual-strip figcaption span{float:none;display:block;margin-top:4px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
 
-        video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        #output_canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        #grain {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 5;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-        }
+<div class="wrap">
+    <div class="bar mono">
+      <span>Independent student-interest dossier / No institutional affiliation</span>
+      <span>Compiled 2 Nov 2026 · Public-source review</span>
+    </div>
+    <nav class="topnav" aria-label="Main navigation">
+      <a class="brand" href="#">NIAT<span><em> / </em>UNDER REVIEW</span></a>
+      <div class="navlinks">
+        <a href="#problems">THE REPORTS</a><a href="#fair">RESPONSE</a><a href="#checklist">BEFORE YOU PAY</a><a href="#sources">SOURCES</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button">◐ THEME</button>
+    </nav>
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">A student-first investigation · India</div>
+          <h1>Before you <mark>pay.</mark><br>Know what you're buying.</h1>
+          <p class="lede">NIAT is marketed as a four-year B.Tech pathway. But the degree, the training, the campus and the money may involve different institutions.</p>
+          <p class="lede">We collected public complaints, student reviews and published claims. Read the evidence. Check the documents. Ask harder questions before committing your family's money.</p>
+        </div>
+        <div class="hero-visual">
+          <img src="https://www.livelaw.in/h-upload/2025/01/25/583381-whatsapp-image-2025-01-25-at-17185931451503.jpg" alt="Students gathered outside an academic building during a campus protest. Illustrative image, not identified as a NIAT protest." loading="eager">
+          <span class="photo-stamp">STUDENT VOICES / 01</span>
+          <div class="photo-label"><strong>Education deserves accountability.</strong><small>ILLUSTRATIVE CAMPUS PROTEST PHOTO · NOT A NIAT EVENT</small></div>
+        </div>
+      </div>
+      <div class="figures">
+        <div class="fig"><b>₹8–18L</b><span>Total fee range listed for the four-year B.Tech, depending on the partner university</span><a href="#src-careers360">SOURCE: CAREERS360 ↗</a></div>
+        <div class="fig"><b>₹1,200</b><span>Non-refundable registration fee for the admission test (NAT)</span><a href="#src-careers360">SOURCE: CAREERS360 ↗</a></div>
+        <div class="fig"><b>₹40,000</b><span>Referral reward stated on NIAT's invite-and-earn page for each admitted referral</span><a href="#src-referral">SOURCE: NIAT ↗</a></div>
+      </div>
+      <p class="notice"><b>Read this carefully:</b> These are reports and claims, not legal findings. Reviews may be inaccurate, outdated or one-sided. This page is a due-diligence guide, not a verdict. Verify every important point independently.</p>
+      <div class="ticker"><span>ASK FOR DOCUMENTS ✳ CHECK THE UNIVERSITY ✳ VERIFY THE FEES ✳ READ THE REFUND TERMS ✳ DO NOT RELY ON A SALES CALL ✳ </span><span>ASK FOR DOCUMENTS ✳ CHECK THE UNIVERSITY ✳ VERIFY THE FEES ✳ READ THE REFUND TERMS ✳ DO NOT RELY ON A SALES CALL ✳ </span></div>
+      <div class="visual-strip" aria-label="Illustrative student and campus photographs">
+        <figure><img src="https://media.openthemagazine.com/openthemagazine/import/wp-content/uploads/2022/07/Managementwithaheart1.jpg?auto=format%2Ccompress&q=80&w=640" alt="Students working in a computer lab" loading="lazy"><figcaption>THE LEARNING ENVIRONMENT <span>ILLUSTRATIVE CAMPUS PHOTO</span></figcaption></figure>
+        <figure><img src="https://beta.du.ac.in/assets/img/campus_life.jpg?v=582e0251fa" alt="University students studying together" loading="lazy"><figcaption>THE STUDENT EXPERIENCE <span>ILLUSTRATIVE CAMPUS PHOTO</span></figcaption></figure>
+      </div>
+    </header>
 
-        /* Gesture legend - one hand picks a category, the other hand cycles it */
-        #legend {
-            position: absolute;
-            top: 3%;
-            right: 3%;
-            z-index: 15;
-            color: rgba(255,255,255,0.75);
-            font-size: 0.62rem;
-            letter-spacing: 1px;
-            line-height: 1.85;
-            text-align: right;
-            pointer-events: none;
-            text-shadow: 0 0 6px rgba(0,0,0,0.8);
-            max-width: 58vw;
-        }
-        #legend div span.pose { display: inline-block; width: 1.4em; }
-        #legend-note { color: rgba(255,255,255,0.45); margin-top: 5px; font-style: italic; font-size: 0.58rem; }
-    </style>
-    
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-            }
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
-</head>
-<body>
-
-    <div id="grain"></div>
-
-    <div id="ui">
-        <h1>呪術廻戦</h1>
-        <div id="technique-name">CURSED ENERGY</div>
-        <div id="crossover-tag">呪術廻戦 × 鬼滅の刃 × BLEACH × DOCTOR STRANGE</div>
+  <section class="sec" id="problems">
+    <div class="section-top"><div><div class="section-number">01 / THE EVIDENCE</div><h2>What students report.</h2></div></div>
+    <p class="sub">Seven recurring concerns gathered from public reviews, explainers and complaint forums. Each report is paired with a practical verification step.</p>
+    <div class="problem-tools">
+      <input id="problemSearch" type="search" placeholder="Search claims, facilities, fees, refunds…" aria-label="Search reported issues">
+      <select id="categoryFilter" aria-label="Filter reported issues">
+        <option value="all">All categories</option><option>Status</option><option>Regulation</option><option>Claims</option><option>Money</option><option>Trust</option><option>Campus</option><option>Teaching</option>
+      </select>
+      <span class="result-count" id="resultCount" aria-live="polite">7 / 7 ISSUES</span>
     </div>
 
-    <div id="legend">
-        <div><span class="pose">✊</span> Fist — Bankai</div>
-        <div><span class="pose">🖐</span> Open Hand — Malevolent Shrine</div>
-        <div><span class="pose">✌️</span> Peace — Unlimited Void</div>
-        <div><span class="pose">☝️</span> Point — Cursed Technique: Red</div>
-        <div><span class="pose">🤏</span> Pinch — Hollow Purple</div>
-        <div><span class="pose">🤟</span> 3 Fingers — Breathing Styles</div>
-        <div><span class="pose">🤙</span> Pinky — Ten Shadows</div>
-        <div><span class="pose">👍</span> Thumbs Up — Doctor Strange (finger-tutting sparks between your fingertips)</div>
-        <div id="legend-note">hold a style pose, then ☝️ point with your OTHER hand to cycle its list</div>
+    <article class="problem">
+      <div><span class="mono cat">Status</span><h3>NIAT is not a college and cannot give you a degree</h3></div>
+      <div class="body">
+        <p>NIAT describes itself as an upskilling programme run by NxtWave. The B.Tech degree comes from a partner university, and the training is delivered inside that university's campus. Careers360 and NIAT's own explainer pages say this plainly. The name "Institute" and the campus-style marketing can make it sound like one institution, and one review site notes that official marketing talks more about NxtWave than about any single campus.</p>
+        <p>Careers360 also raises three questions for buyers: who you are paying, whose campus you are studying on, and who is answerable if something goes wrong.</p>
+        <ul class="srcs"><li><a href="#src-careers360">Careers360</a></li><li><a href="#src-insider">NIAT Insider</a></li><li><a href="#src-newage">New Age Colleges</a></li></ul>
+        <div class="fix"><span class="mono">Before you pay</span><p>Ask for the university's own admission letter and fee receipt. Find out how much of your fee goes to the university and how much to NxtWave, and get that split in writing.</p></div>
+      </div>
+    </article>
+
+    <article class="problem">
+      <div><span class="mono cat">Regulation</span><h3>A reported UGC notice about collaboration programmes</h3></div>
+      <div class="body">
+        <p>Careers360 reports that on 27 March 2026 the University Grants Commission issued a notice against NIAT concerning degree programmes offered in collaboration with 25 recognised universities. As Careers360 describes it, the notice says universities may not run programmes through franchising or collaboration with private entities in distance or online mode without the Commission's approval.</p>
+        <p>I could not locate the notice itself, so treat this as a secondhand report. The wording as reported covers distance and online mode, while NIAT markets on-campus study. Whether the notice applies to a given campus is something only the notice, the university and the UGC can settle.</p>
+        <ul class="srcs"><li><a href="#src-careers360">Careers360</a></li></ul>
+        <div class="fix"><span class="mono">Before you pay</span><p>Read the notice on the UGC website. Then ask the university in writing whether your programme is approved as regular, on-campus study and ask for the approval reference.</p></div>
+      </div>
+    </article>
+
+    <article class="problem">
+      <div><span class="mono cat">Claims</span><h3>Placement and stipend figures mix different programmes</h3></div>
+      <div class="body">
+        <p>NxtWave's published outcomes carry a disclaimer that they come from several programmes, including online upskilling cohorts. Careers360 points out that the four-year B.Tech started in 2023 and that placements happen in the final year, so those figures cannot describe B.Tech graduates yet. The sources disagree on when the first batch finishes: Careers360 says 2027, while a review site says 2028 to 2029.</p>
+        <p>The ₹2.87 crore internship stipend total is shown without the number of students or the amount each received. The ₹7 LPA average often quoted is described by one review site as covering all NxtWave programmes, not NIAT alone.</p>
+        <ul class="srcs"><li><a href="#src-careers360">Careers360</a></li><li><a href="#src-newage">New Age Colleges</a></li></ul>
+        <div class="fix"><span class="mono">Before you pay</span><p>Ask for placement data for the B.Tech programme only, by batch, with the number of students placed, the median salary and the number who took part. If no batch has graduated yet, ask them to say so.</p></div>
+      </div>
+    </article>
+
+    <article class="problem">
+      <div><span class="mono cat">Money</span><h3>Sales pressure, EMIs and hard-to-get refunds</h3></div>
+      <div class="body">
+        <p>A college-review site lists high-pressure enrolment tactics, concern about being locked into long loan commitments, and a narrow refund window as cons. A student-facing fee page says NIAT does not offer fee reimbursement, only performance-based waivers.</p>
+        <p>Two complaints on the Voxya consumer forum, from June and October 2025, describe students who could not keep paying EMIs and were told cancellation was not possible after the enrolment window. Both concern NxtWave's other programmes, not the B.Tech, so they show how refund requests have been handled, not what happens at NIAT.</p>
+        <ul class="srcs"><li><a href="#src-newage">New Age Colleges</a></li><li><a href="#src-dekho-fees">CollegeDekho</a></li><li><a href="#src-voxya1">Voxya, Jun 2025</a></li><li><a href="#src-voxya2">Voxya, Oct 2025</a></li></ul>
+        <div class="fix"><span class="mono">Before you pay</span><p>Get the refund and cancellation terms in writing before any payment. Read the loan agreement yourself, note who the lender is, and do not sign because of a same-day deadline. If a dispute does arise, you can file a complaint through the National Consumer Helpline (1915).</p></div>
+      </div>
+    </article>
+
+    <article class="problem">
+      <div><span class="mono cat">Trust</span><h3>People who recommend NIAT can be paid for it</h3></div>
+      <div class="body">
+        <p>NIAT runs a referral page that offers ₹40,000 each time a student someone recommends gets admission, and it invites second-year intermediate students to refer others. New Age Colleges also reports that positive online reviews have been manufactured or incentivised, though it gives no examples.</p>
+        <p>That does not mean any given recommendation is dishonest. It means a glowing post, video or school-corridor tip may come from someone with a financial reason to give it.</p>
+        <ul class="srcs"><li><a href="#src-referral">NIAT referral page</a></li><li><a href="#src-newage">New Age Colleges</a></li></ul>
+        <div class="fix"><span class="mono">Before you pay</span><p>Ask any recommender whether they earn from referrals. Speak to current students you found yourself, not ones the counsellor introduced.</p></div>
+      </div>
+    </article>
+
+    <article class="problem">
+      <div><span class="mono cat">Campus</span><h3>Facilities that differ from what was promised</h3></div>
+      <div class="body">
+        <p>Student reviews on CollegeDekho and Shiksha describe gaps between the pitch and the campus. A Mangalore student says the campus did not provide everything promised at admission and has few events, and compares it unfavourably with the Hyderabad campus. A Hyderabad review says hostels were first provided but are no longer available, so students live in PGs or flats. Another Hyderabad review says promised indoor games and gaming courts do not exist and the classroom air conditioning often needs repair. A Jaipur student reports poor hostel food and very weak mobile signal.</p>
+        <p>Other reviews of the same campuses are positive, so conditions appear to vary by campus and by year.</p>
+        <ul class="srcs"><li><a href="#src-dekho-mng">CollegeDekho, Mangalore</a></li><li><a href="#src-dekho-hyd">CollegeDekho, Hyderabad</a></li><li><a href="#src-dekho-jpr">CollegeDekho, Jaipur</a></li><li><a href="#src-shiksha">Shiksha, Hyderabad</a></li></ul>
+        <div class="fix"><span class="mono">Before you pay</span><p>Visit the exact campus you would attend. Get hostel, transport and sports facilities listed in the admission paperwork, and ask who runs the hostel and whose rules apply.</p></div>
+      </div>
+    </article>
+
+    <article class="problem">
+      <div><span class="mono cat">Teaching</span><h3>Little published about who actually teaches</h3></div>
+      <div class="body">
+        <p>New Age Colleges says the official site names mentors but gives no detail on faculty or on what mentorship involves. A CollegeDekho review for the Bangalore campus says feedback on faculty is mixed and that some critics say certain trainers are fresh graduates. A Shiksha reviewer for Hyderabad praised placements and infrastructure but said faculty support was poor, while another reviewer from the same campus was satisfied with faculty and curriculum.</p>
+        <ul class="srcs"><li><a href="#src-newage">New Age Colleges</a></li><li><a href="#src-dekho-blr">CollegeDekho, Bangalore</a></li><li><a href="#src-shiksha">Shiksha, Hyderabad</a></li></ul>
+        <div class="fix"><span class="mono">Before you pay</span><p>Ask for the faculty list for your campus with qualifications and experience. Ask which courses the university teaches for degree credit and which are NIAT's own training.</p></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="sec" id="fair">
+    <div class="section-top"><div><div class="section-number">02 / THE OTHER SIDE</div><h2>What NIAT says.</h2></div></div>
+    <p class="sub">A fair assessment separates the official position from independent student accounts.</p>
+    <div class="fair">
+      <div>
+        <h3>The official position</h3>
+        <ul>
+          <li>NIAT says it is an upskilling programme, not a university, and that the B.Tech is awarded by UGC-recognised, AICTE-approved partner universities.</li>
+          <li>It says placement is not guaranteed and depends on the learner's skills and performance.</li>
+          <li>Its training is described as non-credit and not affecting degree progression.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What many students say</h3>
+        <ul>
+          <li>Several reviewers praise learning to code from the first semester, projects and a modern campus.</li>
+          <li>Some report paid internships in their first or second year, though others say outcomes depend on the individual.</li>
+          <li>One explainer blog concludes NIAT is not a scam and not a guaranteed route to a job. That blog also promotes an enrolment code, so weigh it accordingly.</li>
+        </ul>
+      </div>
     </div>
+  </section>
 
-    <div id="video-container">
-        <video class="input_video"></video>
-        <canvas id="output_canvas"></canvas>
+  <section class="sec" id="checklist">
+    <div class="section-top"><div><div class="section-number">03 / YOUR DUE-DILIGENCE LIST</div><h2>Don't sign blind.</h2></div></div>
+    <p class="sub">Get written answers before paying a registration fee, tuition fee or loan EMI. Tick each item only when you have a clear answer.</p>
+    <div class="check-wrap">
+      <div class="check-head"><span id="checkProgressText">0 OF 8 COMPLETED</span><span>SAVED IN THIS BROWSER</span></div>
+      <div class="progress-track"><div class="progress-fill" id="checkProgress"></div></div>
+      <div class="check" id="list"></div>
+      <div class="actions">
+        <button type="button" id="copy">COPY ALL QUESTIONS ↗</button>
+        <button type="button" class="secondary" id="copyRemaining">COPY UNCHECKED ONLY</button>
+        <button type="button" class="secondary" id="resetChecks">RESET</button>
+      </div>
+      <span id="copied" role="status"></span>
+      <textarea id="fallback" hidden readonly aria-label="Questions to send"></textarea>
     </div>
+  </section>
 
-<script type="module">
-    import * as THREE from 'three';
-    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-    import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+  <section class="sec sources" id="sources">
+    <div class="section-top"><div><div class="section-number">04 / TRACE EVERY CLAIM</div><h2>Read the sources.</h2></div></div>
+    <p class="sub">Open the original pages and judge the evidence yourself. User reviews and complaint posts are allegations, not independently established facts.</p>
+    <ol>
+      <li id="src-careers360"><a href="https://engineering.careers360.com/articles/nxtwave-of-innovation-in-advanced-technologies-brutal-truth">Careers360, NIAT explainer</a><small>Updated 10 June 2026. UGC notice, degree structure, placement disclaimers, stipend claim, NAT fee.</small></li>
+      <li id="src-newage"><a href="https://newagecolleges.com/colleges/nxtwave-niat">New Age Colleges, NxtWave NIAT review</a><small>Lists cons including sales practices, EMI concerns, refund window, faculty detail and reported incentivised reviews. A review aggregator, not a regulator.</small></li>
+      <li id="src-insider"><a href="https://www.niatinsider.com/article/is-niat-a-university-a-college-or-an-institute">NIAT Insider, Is NIAT a university, a college or an institute?</a><small>States NIAT is an upskilling programme and not a degree-awarding body.</small></li>
+      <li id="src-referral"><a href="https://niat-inviteandearn.ccbp.in">NIAT invite and earn page</a><small>NIAT's own page offering ₹40,000 per admitted student referred.</small></li>
+      <li id="src-dekho-fees"><a href="https://www.collegedekho.com/colleges/nxtwave-institute-of-advanced-technologies">CollegeDekho, NIAT Hyderabad</a><small>Fee range and statement that no fee reimbursement is offered.</small></li>
+      <li id="src-dekho-mng"><a href="https://www.collegedekho.com/colleges/nxtwave-institute-of-advanced-technologies-mangalore-niat-reviews">CollegeDekho, Mangalore reviews</a><small>Student reviews, including unmet expectations.</small></li>
+      <li id="src-dekho-hyd"><a href="https://www.collegedekho.com/colleges/nxtwave-institute-of-advanced-technologies-reviews">CollegeDekho, Hyderabad reviews</a><small>Student reviews, including hostel availability.</small></li>
+      <li id="src-dekho-jpr"><a href="https://www.collegedekho.com/colleges/nxtwave-institute-of-advanced-technologies-jaipur-reviews">CollegeDekho, Jaipur reviews</a><small>Student reviews, including hostel food and signal.</small></li>
+      <li id="src-dekho-blr"><a href="https://www.collegedekho.com/colleges/nxtwave-institute-of-advanced-technologies-bangalore-niat-courses">CollegeDekho, Bangalore</a><small>Mixed feedback on faculty and placements.</small></li>
+      <li id="src-shiksha"><a href="https://www.shiksha.com/college/nxtwave-institute-of-advanced-technologies-hyderabad-236230/reviews">Shiksha, Hyderabad reviews</a><small>Student reviews on facilities, faculty and promised amenities.</small></li>
+      <li id="src-voxya1"><a href="https://voxya.com/consumer-complaints/edutech-company-fake-promises/245559">Voxya complaint, June 2025</a><small>About NxtWave CCBP 4.0, not the B.Tech. EMI hardship and cancellation request.</small></li>
+      <li id="src-voxya2"><a href="https://voxya.com/consumer-complaints/emi-issue-with-nxtwave-edutech-compay/252191">Voxya complaint, October 2025</a><small>About NxtWave generally. Cancellation refused after the enrolment window.</small></li>
+    </ol>
+  </section>
 
-    // --- Scene & Rendering ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 55;
+  <footer>
+    <p><strong>Photo note:</strong> The protest photograph above is an illustrative campus-protest image published by <a href="https://www.livelaw.in/articles/expectations-versus-reality-of-student-life-in-national-law-universities-513873" target="_blank" rel="noopener">LiveLaw</a>. It is not represented as a NIAT/NxtWave protest.</p>
+    This page was compiled from public sources by an independent author. It is not affiliated with, endorsed by or written by NIAT, NxtWave or any partner university. It summarises what others have reported and does not assert that any report is true. Check the linked sources and the official documents before deciding.
+  </footer>
+</div>
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    document.body.appendChild(renderer.domElement);
 
-    const composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-    composer.addPass(bloomPass);
-
-    const COUNT = 20000;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(COUNT * 3);
-    const colors = new Float32Array(COUNT * 3);
-    const sizes = new Float32Array(COUNT);
-    
-    const targetPositions = new Float32Array(COUNT * 3);
-    const targetColors = new Float32Array(COUNT * 3);
-    const targetSizes = new Float32Array(COUNT);
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-    const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.3, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false }));
-    scene.add(particles);
-
-    // ============================================================
-    // BASE JJK TECHNIQUE FUNCTIONS (the original four)
-    // ============================================================
-    function getRed(i) {
-        if(i < COUNT * 0.1) {
-            const r = Math.random() * 9;
-            const theta = Math.random() * 6.28; const phi = Math.acos(2 * Math.random() - 1);
-            return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: 3, g: 0.1, b: 0.1, s: 2.5 };
-        } else {
-            const armCount = 3; const t = (i / COUNT); 
-            const angle = t * 15 + ((i % armCount) * (Math.PI * 2 / armCount));
-            const radius = 2 + (t * 40); 
-            return { x: radius * Math.cos(angle), y: radius * Math.sin(angle), z: (Math.random() - 0.5) * (10 * t), r: 0.8, g: 0, b: 0, s: 1.0 };
-        }
-    }
-
-    function getVoid(i) {
-        if (i < COUNT * 0.15) {
-            const angle = Math.random() * Math.PI * 2;
-            return { x: 26 * Math.cos(angle), y: 26 * Math.sin(angle), z: (Math.random()-0.5) * 1, r: 1, g: 1, b: 1, s: 2.5 };
-        } else {
-            const radius = 30 + Math.random() * 90;
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.acos(2 * Math.random() - 1);
-            return { x: radius * Math.sin(phi) * Math.cos(theta), y: radius * Math.sin(phi) * Math.sin(theta), z: radius * Math.cos(phi), r: 0.1, g: 0.6, b: 1.0, s: 0.7 };
-        }
-    }
-
-    function getPurple(i) {
-        if (Math.random() > 0.8) return { x: (Math.random() - 0.5) * 100, y: (Math.random() - 0.5) * 100, z: (Math.random() - 0.5) * 100, r: 0.5, g: 0.5, b: 0.7, s: 0.8 };
-        const r = 20; const theta = Math.random() * Math.PI * 2; const phi = Math.acos(2 * Math.random() - 1);
-        return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: 0.6, g: 0.5, b: 1.0, s: 2.5 };
-    }
-
-    function getShrine(i) {
-        const total = COUNT;
-        if (i < total * 0.3) return { x: (Math.random()-0.5)*80, y: -15, z: (Math.random()-0.5)*80, r: 0.4, g: 0, b: 0, s: 0.8 };
-        else if (i < total * 0.4) {
-            const px = ((i%4)<2?1:-1)*12; const pz = ((i%4)%2==0?1:-1)*8;
-            return { x: px+(Math.random()-0.5)*2, y: -15+Math.random()*30, z: pz+(Math.random()-0.5)*2, r: 0.2, g: 0.2, b: 0.2, s: 0.6 };
-        } else if (i < total * 0.6) {
-            const t = Math.random() * Math.PI * 2; const rad = Math.random() * 30;
-            const curve = Math.pow(rad/30, 2) * 10; 
-            return { x: rad*Math.cos(t), y: 15 - curve + (Math.random()*2), z: rad*Math.sin(t)*0.6, r: 0.6, g: 0, b: 0, s: 0.6 };
-        } else return { x: 0, y: 0, z: 0, r: 0, g: 0, b: 0, s: 0 };
-    }
-
-    // Domain Expansion: Chimera Shadow Garden - Mahoraga's eight-spoked wheel, adaptation made manifest
-    function getMahoraga(i) {
-        const spokeCount = 8;
-        if (i < COUNT * 0.12) {
-            const angle = Math.random() * Math.PI * 2;
-            return { x: 32 * Math.cos(angle), y: 32 * Math.sin(angle), z: (Math.random()-0.5) * 2, r: 1, g: 1, b: 1, s: 2.2 };
-        } else if (i < COUNT * 0.8) {
-            const spokeAngle = (i % spokeCount) / spokeCount * Math.PI * 2;
-            const dist = Math.random() * 30;
-            const jitter = (Math.random() - 0.5) * 1.4;
-            return {
-                x: dist * Math.cos(spokeAngle) + jitter,
-                y: dist * Math.sin(spokeAngle) + jitter,
-                z: (Math.random()-0.5) * 2,
-                r: 0.9, g: 0.08, b: 0.08, s: 1.0
-            };
-        } else {
-            const r = Math.random() * 5;
-            const theta = Math.random() * 6.28;
-            return { x: r * Math.cos(theta), y: r * Math.sin(theta), z: (Math.random()-0.5) * 3, r: 1, g: 1, b: 1, s: 1.8 };
-        }
-    }
-
-    // ============================================================
-    // SHAPE FACTORIES - shared building blocks for every crossover technique
-    // ============================================================
-    function hex01(hex) {
-        const v = parseInt(hex.slice(1), 16);
-        return { r: ((v >> 16) & 255) / 255, g: ((v >> 8) & 255) / 255, b: (v & 255) / 255 };
-    }
-
-    // Rising/coiling spiral - used for breathing forms and dragon-style Bankai
-    function makeSpiral({ turns = 5, rBase = 8, rVar = 4, rFreq = 5, heightRange = 50, hex, scatterFrac = 0.12, sizeBase = 0.9, sizeVar = 0.6, jaggy = 0 }) {
-        const c = hex01(hex);
-        return function (i) {
-            if (Math.random() < scatterFrac) {
-                return { x: (Math.random() - 0.5) * 70, y: (Math.random() - 0.5) * 70, z: (Math.random() - 0.5) * 70, r: c.r, g: c.g, b: c.b, s: 0.5 };
-            }
-            const t = i / COUNT;
-            let angle = t * Math.PI * 2 * turns;
-            if (jaggy) angle += (Math.random() - 0.5) * jaggy;
-            const height = (t - 0.5) * heightRange;
-            const radius = rBase + Math.sin(t * Math.PI * rFreq) * rVar + Math.random();
-            return {
-                x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle),
-                r: Math.min(1, c.r + Math.random() * 0.08), g: Math.min(1, c.g + Math.random() * 0.08), b: Math.min(1, c.b + Math.random() * 0.08),
-                s: sizeBase + Math.random() * sizeVar
-            };
-        };
-    }
-
-    // Concentric ring(s) with a glowing core - portals, mandalas, sound waves
-    function makeRing({ ringRadius = 25, thickness = 3, hex, coreHex = null, coreFrac = 0.15, sizeBase = 1.2, rings = 1 }) {
-        const c = hex01(hex);
-        const cc = hex01(coreHex || hex);
-        return function () {
-            if (Math.random() < coreFrac) {
-                const r = Math.random() * 4;
-                const th = Math.random() * 6.28;
-                return { x: r * Math.cos(th), y: r * Math.sin(th), z: (Math.random() - 0.5) * 2, r: cc.r, g: cc.g, b: cc.b, s: sizeBase + 0.5 };
-            }
-            const ringPick = Math.floor(Math.random() * rings);
-            const rad = ringRadius * (1 - ringPick * 0.28) + (Math.random() - 0.5) * thickness;
-            const angle = Math.random() * 6.28;
-            return { x: rad * Math.cos(angle), y: rad * Math.sin(angle), z: (Math.random() - 0.5) * thickness, r: c.r, g: c.g, b: c.b, s: sizeBase };
-        };
-    }
-
-    // Vertical eruption - Bankai releases, heavy shikigami impacts
-    function makePillar({ coreHex, edgeHex, coreFrac = 0.08, heightRange = 65, radiusMax = 24, curvePow = 1.3, angularSpeed = 0.35 }) {
-        const cc = hex01(coreHex), ec = hex01(edgeHex);
-        return function () {
-            if (Math.random() < coreFrac) {
-                const y = (Math.random() - 0.5) * heightRange;
-                const r = Math.random() * 1.8;
-                const th = Math.random() * 6.28;
-                return { x: r * Math.cos(th), y, z: r * Math.sin(th), r: cc.r, g: cc.g, b: cc.b, s: 1.6 };
-            }
-            const t = Math.random();
-            const height = (t - 0.5) * heightRange;
-            const radius = 2 + Math.pow(Math.abs(height) / (heightRange / 2), curvePow) * radiusMax + Math.random() * 3;
-            const angle = height * angularSpeed + Math.random() * 6.28;
-            return { x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle), r: ec.r, g: ec.g, b: ec.b, s: 1.1 };
-        };
-    }
-
-    // Soft volumetric blob - Toad, Rabbit Escape, fog-type effects
-    function makeCloud({ hex, radius = 45, sizeBase = 0.8, sizeVar = 0.6 }) {
-        const c = hex01(hex);
-        return function () {
-            const th = Math.random() * 6.28, ph = Math.acos(2 * Math.random() - 1);
-            const r = Math.random() * radius;
-            return { x: r * Math.sin(ph) * Math.cos(th), y: r * Math.sin(ph) * Math.sin(th), z: r * Math.cos(ph), r: c.r, g: c.g, b: c.b, s: sizeBase + Math.random() * sizeVar };
-        };
-    }
-
-    // Even, chaotic scatter - petal storms, shattering dimensions
-    function makeStorm({ hex, hex2 = null, radius = 40, sizeBase = 0.7, sizeVar = 0.5 }) {
-        const c = hex01(hex);
-        const c2 = hex2 ? hex01(hex2) : c;
-        return function () {
-            const useC = Math.random() > 0.5 ? c : c2;
-            const theta = Math.random() * 6.28, phi = Math.acos(2 * Math.random() - 1);
-            const r = Math.cbrt(Math.random()) * radius;
-            return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: useC.r, g: useC.g, b: useC.b, s: sizeBase + Math.random() * sizeVar };
-        };
-    }
-
-    // Bankai #1: Black Moon Fang (the original vertical reiatsu pillar)
-    function getBankaiCore(i) {
-        if (i < COUNT * 0.08) {
-            const y = (Math.random() - 0.5) * 65;
-            const r = Math.random() * 1.8;
-            const theta = Math.random() * 6.28;
-            return { x: r * Math.cos(theta), y: y, z: r * Math.sin(theta), r: 0.08, g: 0.02, b: 0.02, s: 1.6 };
-        } else {
-            const t = Math.random();
-            const height = (t - 0.5) * 70;
-            const radius = 2 + Math.pow(Math.abs(height) / 35, 1.3) * 22 + Math.random() * 3;
-            const angle = height * 0.35 + Math.random() * 6.28;
-            return { x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle), r: 0.9, g: 0.05, b: 0.02, s: 1.1 };
-        }
-    }
-
-    // Sun Breathing: Dance of the Fire God - the rising flame dragon that opens the Breathing list
-    function getSunBreathing(i) {
-        if (Math.random() > 0.85) {
-            return { x: (Math.random() - 0.5) * 70, y: (Math.random() - 0.5) * 70, z: (Math.random() - 0.5) * 70, r: 1.0, g: 0.35, b: 0.0, s: 0.6 };
-        }
-        const t = i / COUNT;
-        const turns = 6;
-        const angle = t * Math.PI * 2 * turns;
-        const height = (t - 0.5) * 55;
-        const radius = 7 + Math.sin(t * Math.PI * 5) * 4 + Math.random();
-        return {
-            x: radius * Math.cos(angle), y: height, z: radius * Math.sin(angle),
-            r: 1.0, g: 0.25 + Math.random() * 0.4, b: 0.0,
-            s: 0.9 + Math.random() * 0.8
-        };
-    }
-
-    // ============================================================
-    // CATEGORY ROSTERS - hold a category pose, point with the other hand to cycle
-    // ============================================================
-    const CATEGORY_LISTS = {
-        breathing: [
-            { name: "Sun Breathing: Dance of the Fire God", color: '#ff8800', gen: getSunBreathing },
-            { name: "Water Breathing, Eleventh Form: Dead Calm (Giyu Tomioka)", color: '#2299ff', gen: makeSpiral({ turns: 4, rBase: 9, rVar: 6, rFreq: 3, heightRange: 50, hex: '#2299ff', scatterFrac: 0.10 }) },
-            { name: "Flame Breathing, Ninth Form: Rengoku (Kyojuro Rengoku)", color: '#ff3300', gen: makeSpiral({ turns: 8, rBase: 6, rVar: 3, rFreq: 7, heightRange: 45, hex: '#ff3300', scatterFrac: 0.22 }) },
-            { name: "Wind Breathing, Ninth Form: Idaten Typhoon (Sanemi Shinazugawa)", color: '#bbffcc', gen: makeSpiral({ turns: 7, rBase: 10, rVar: 7, rFreq: 6, heightRange: 60, hex: '#bbffcc', scatterFrac: 0.25, jaggy: 0.5 }) },
-            { name: "Love Breathing, Fifth Form: Swaying Love, Wildclaw (Mitsuri Kanroji)", color: '#ff66aa', gen: makeSpiral({ turns: 5, rBase: 8, rVar: 5, rFreq: 2, heightRange: 40, hex: '#ff66aa', scatterFrac: 0.12 }) },
-            { name: "Insect Breathing, First Form: Butterfly Dance, Caprice (Shinobu Kocho)", color: '#aa66ff', gen: makeSpiral({ turns: 3, rBase: 12, rVar: 8, rFreq: 4, heightRange: 35, hex: '#aa66ff', scatterFrac: 0.40, sizeBase: 0.7 }) },
-            { name: "Serpent Breathing, First Form: Winding Serpent Slash (Obanai Iguro)", color: '#e0ccff', gen: makeSpiral({ turns: 10, rBase: 5, rVar: 2, rFreq: 8, heightRange: 55, hex: '#e0ccff', scatterFrac: 0.08 }) },
-            { name: "Stone Breathing, Fifth Form: Arcs of Justice (Gyomei Himejima)", color: '#998866', gen: makeSpiral({ turns: 2, rBase: 14, rVar: 3, rFreq: 1, heightRange: 30, hex: '#998866', scatterFrac: 0.10, sizeBase: 1.6, sizeVar: 0.4 }) },
-            { name: "Sound Breathing, Fourth Form: Constant Resounding Slashes (Tengen Uzui)", color: '#ffb000', gen: makeRing({ ringRadius: 26, thickness: 4, rings: 3, hex: '#ffb000', coreHex: '#7fffe0', coreFrac: 0.14, sizeBase: 1.3 }) },
-            { name: "Mist Breathing, Fourth Form: Shifting Flow Slash (Muichiro Tokito)", color: '#bdf5ff', gen: makeSpiral({ turns: 4, rBase: 9, rVar: 5, rFreq: 3, heightRange: 45, hex: '#bdf5ff', scatterFrac: 0.50, sizeBase: 0.6, sizeVar: 0.4 }) }
-        ],
-        shadows: [
-            { name: "Ten Shadows — Divine Dogs", color: '#ccccff', gen: makeRing({ ringRadius: 20, thickness: 5, rings: 2, hex: '#ccccff', coreHex: '#ffffff', coreFrac: 0.22, sizeBase: 1.4 }) },
-            { name: "Ten Shadows — Nue (owl scout)", color: '#93a8d6', gen: makeSpiral({ turns: 5, rBase: 12, rVar: 5, rFreq: 3, heightRange: 55, hex: '#93a8d6', scatterFrac: 0.20, jaggy: 0.15 }) },
-            { name: "Ten Shadows — Great Serpent", color: '#33aa33', gen: makeSpiral({ turns: 9, rBase: 16, rVar: 4, rFreq: 6, heightRange: 40, hex: '#33aa33', scatterFrac: 0.08, sizeBase: 1.3 }) },
-            { name: "Ten Shadows — Max Elephant", color: '#8a7a63', gen: makePillar({ coreHex: '#55483a', edgeHex: '#8a7a63', heightRange: 40, radiusMax: 30, curvePow: 1.6, angularSpeed: 0.15 }) },
-            { name: "Ten Shadows — Round Deer (healing)", color: '#bbffcc', gen: makeRing({ ringRadius: 18, thickness: 6, rings: 2, hex: '#bbffcc', coreHex: '#eafff0', coreFrac: 0.30, sizeBase: 1.0 }) },
-            { name: "Ten Shadows — Rabbit Escape", color: '#eeeeee', gen: makeCloud({ hex: '#eeeeee', radius: 50, sizeBase: 0.5, sizeVar: 0.7 }) },
-            { name: "Ten Shadows — Piercing Ox", color: '#aa1111', gen: makePillar({ coreHex: '#220000', edgeHex: '#aa1111', heightRange: 70, radiusMax: 10, curvePow: 0.6, angularSpeed: 0.05 }) },
-            { name: "Ten Shadows — Toad", color: '#225522', gen: makeCloud({ hex: '#225522', radius: 38, sizeBase: 1.4, sizeVar: 0.8 }) },
-            { name: "Devine gernal Mahoraga", color: '#ffffff', gen: getMahoraga }
-        ],
-        bankai: [
-            { name: "Bankai: Tensa Zangetsu (Ichigo Kurosaki)", color: '#aa0000', gen: getBankaiCore },
-            { name: "Bankai: Senbonzakura Kageyoshi (Byakuya Kuchiki)", color: '#ffb6d5', gen: makeStorm({ hex: '#ffb6d5', hex2: '#ffffff', radius: 42 }) },
-            { name: "Bankai: Daiguren Hyorinmaru (Toshiro Hitsugaya)", color: '#66ccff', gen: makeSpiral({ turns: 5, rBase: 9, rVar: 7, rFreq: 4, heightRange: 55, hex: '#66ccff', scatterFrac: 0.18, sizeBase: 1.2 }) }
-        ],
-        strange: [
-            { name: "Eye of Agamotto: Time Stone", color: '#33ff88', gen: makeRing({ ringRadius: 22, thickness: 3, rings: 3, hex: '#33ff88', coreHex: '#ccffe0', coreFrac: 0.16, sizeBase: 1.2 }) },
-            { name: "Sling Ring: Portal", color: '#ff9900', gen: makeRing({ ringRadius: 24, thickness: 5, rings: 1, hex: '#ff9900', coreHex: '#fff0cc', coreFrac: 0.28, sizeBase: 1.4 }) },
-            { name: "Mirror Dimension", color: '#aa55ff', gen: makeStorm({ hex: '#aa55ff', hex2: '#ff9944', radius: 46 }) }
-        ]
-    };
-    const CATEGORY_META = {
-        breathing: { bloom: 2.6, shake: 0.28 },
-        shadows: { bloom: 2.4, shake: 0.40 },
-        bankai: { bloom: 3.2, shake: 0.60 },
-        strange: { bloom: 3.0, shake: 0.32 }
-    };
-    const CATEGORY_KEYS = Object.keys(CATEGORY_LISTS);
-
-    // ============================================================
-    // Hand Tracking
-    // ============================================================
-    let currentTech = 'neutral';
-    let shakeIntensity = 0;
-    const videoElement = document.querySelector('.input_video');
-    const canvasElement = document.getElementById('output_canvas');
-    const canvasCtx = canvasElement.getContext('2d');
-    let glowColor = '#00ffff';
-
-    const subIndex = { breathing: 0, shadows: 0, bankai: 0, strange: 0 };
-    let prevAdvancePose = false;
-
-    // Doctor Strange's spellcasting look is built from "finger-tutting" - the intricate,
-    // precise finger choreography (taught to Cumberbatch by dancer/choreographer Julian Andrews)
-    // used throughout the MCU films, including the identity spell in No Way Home. This draws
-    // glowing threads of light between the fingertips to mimic that cat's-cradle-of-magic look.
-    function drawStrangeStrings(ctx, lm, t) {
-        const w = canvasElement.width, h = canvasElement.height;
-        if (!w || !h) return;
-        const tipIdx = [4, 8, 12, 16, 20];
-        const pts = tipIdx.map((i) => ({ x: lm[i].x * w, y: lm[i].y * h }));
-        ctx.save();
-        ctx.strokeStyle = '#ff9900';
-        ctx.shadowColor = '#ff9900';
-        ctx.shadowBlur = 14;
-        ctx.lineWidth = 1.6;
-        for (let a = 0; a < pts.length; a++) {
-            for (let b = a + 1; b < pts.length; b++) {
-                const pulse = 0.5 + 0.5 * Math.sin(t * 0.006 + a * 1.7 + b * 2.3);
-                ctx.globalAlpha = 0.2 + 0.55 * pulse;
-                const mx = (pts[a].x + pts[b].x) / 2 + Math.sin(t * 0.004 + a * 2 + b) * 12;
-                const my = (pts[a].y + pts[b].y) / 2 + Math.cos(t * 0.004 + b * 2 + a) * 12;
-                ctx.beginPath();
-                ctx.moveTo(pts[a].x, pts[a].y);
-                ctx.quadraticCurveTo(mx, my, pts[b].x, pts[b].y);
-                ctx.stroke();
-            }
-        }
-        ctx.restore();
-    }
-
-    // Classifies a single hand's landmarks into one pose/category
-    function classifyHand(lm) {
-        const isUp = (t, p) => lm[t].y < lm[p].y;
-        const pinch = Math.hypot(lm[8].x - lm[4].x, lm[8].y - lm[4].y);
-        const iUp = isUp(8, 6), mUp = isUp(12, 10), rUp = isUp(16, 14), pUp = isUp(20, 18);
-        const thumbUp = isUp(4, 3) && !iUp && !mUp && !rUp && !pUp;
-
-        if (pinch < 0.04) return 'purple';
-        if (thumbUp) return 'strange';
-        if (iUp && mUp && rUp && pUp) return 'shrine';
-        if (iUp && mUp && rUp && !pUp) return 'breathing';
-        if (iUp && mUp && !rUp) return 'void';
-        if (iUp && !mUp) return 'red';
-        if (!iUp && !mUp && !rUp && pUp) return 'shadows';
-        if (!iUp && !mUp && !rUp && !pUp) return 'bankai';
-        return 'neutral';
-    }
-
-    const hands = new Hands({locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`});
-    hands.setOptions({ maxNumHands: 2, modelComplexity: 1, minDetectionConfidence: 0.7 });
-
-    hands.onResults((results) => {
-        canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
-        const poses = [];
-
-        const now = performance.now();
-        if (results.multiHandLandmarks) {
-            results.multiHandLandmarks.forEach((lm) => {
-                drawConnectors(canvasCtx, lm, HAND_CONNECTIONS, {color: glowColor, lineWidth: 5});
-                drawLandmarks(canvasCtx, lm, {color: '#fff', lineWidth: 1, radius: 2});
-                const pose = classifyHand(lm);
-                poses.push(pose);
-                if (pose === 'strange') drawStrangeStrings(canvasCtx, lm, now);
-            });
-        }
-
-        // One hand holds a category pose; pointing with the OTHER hand cycles its roster
-        const primaryCategory = poses.find((p) => CATEGORY_KEYS.includes(p));
-        const advancing = poses.length > 1 && !!primaryCategory && poses.includes('red');
-
-        if (advancing && !prevAdvancePose) {
-            subIndex[primaryCategory] = (subIndex[primaryCategory] + 1) % CATEGORY_LISTS[primaryCategory].length;
-        }
-        prevAdvancePose = advancing;
-
-        let detected;
-        if (primaryCategory) detected = `${primaryCategory}:${subIndex[primaryCategory]}`;
-        else if (poses.length > 0) detected = poses[0];
-        else detected = 'neutral';
-
-        updateState(detected);
-    });
-
-    function updateState(tech) {
-        if(currentTech === tech) return;
-        currentTech = tech;
-        const nameEl = document.getElementById('technique-name');
-
-        const sep = tech.indexOf(':');
-        const cat = sep === -1 ? tech : tech.slice(0, sep);
-        const idx = sep === -1 ? 0 : parseInt(tech.slice(sep + 1), 10);
-
-        let name, color, bloomStrength, shake, genFn;
-        const list = CATEGORY_LISTS[cat];
-
-        if (list) {
-            const entry = list[idx];
-            name = `${entry.name}  (${idx + 1}/${list.length})`;
-            color = entry.color;
-            bloomStrength = CATEGORY_META[cat].bloom;
-            shake = CATEGORY_META[cat].shake;
-            genFn = entry.gen;
-        } else if (cat === 'shrine') {
-            name = "Domain Expansion: Malevolent Shrine (Ryomen Sukuna)"; color = '#ff0000'; bloomStrength = 2.5; shake = 0.5; genFn = getShrine;
-        } else if (cat === 'purple') {
-            name = "Hollow Technique: Purple (Satoru Gojo)"; color = '#bb00ff'; bloomStrength = 4.0; shake = 0.5; genFn = getPurple;
-        } else if (cat === 'void') {
-            name = "Domain Expansion: Unlimited Void (Satoru Gojo)"; color = '#00ffff'; bloomStrength = 2.0; shake = 0.3; genFn = getVoid;
-        } else if (cat === 'red') {
-            name = "Cursed Technique Reversal: Red (Satoru Gojo)"; color = '#ff3333'; bloomStrength = 2.5; shake = 0.3; genFn = getRed;
-        } else {
-            name = "Neutral State"; color = '#00ffff'; bloomStrength = 1.0; shake = 0; genFn = null;
-        }
-
-        glowColor = color;
-        bloomPass.strength = bloomStrength;
-        shakeIntensity = shake;
-        nameEl.innerText = name;
-        nameEl.style.color = color;
-        nameEl.style.textShadow = `0 0 10px ${color}, 0 0 22px ${color}`;
-
-        for(let i=0; i<COUNT; i++) {
-            let p;
-            if (!genFn) {
-                if(i < COUNT * 0.05) {
-                    const r = 15 + Math.random()*20; const t = Math.random()*6.28; const ph = Math.random()*3.14;
-                    p = { x: r*Math.sin(ph)*Math.cos(t), y: r*Math.sin(ph)*Math.sin(t), z: r*Math.cos(ph), r: 0.1, g: 0.1, b: 0.2, s: 0.4 };
-                } else p = { x:0, y:0, z:0, r:0, g:0, b:0, s:0 };
-            } else {
-                p = genFn(i);
-            }
-            
-            targetPositions[i*3] = p.x; targetPositions[i*3+1] = p.y; targetPositions[i*3+2] = p.z;
-            targetColors[i*3] = p.r; targetColors[i*3+1] = p.g; targetColors[i*3+2] = p.b;
-            targetSizes[i] = p.s;
-        }
-    }
-
-    const cameraUtils = new Camera(videoElement, {
-        onFrame: async () => {
-            canvasElement.width = videoElement.videoWidth;
-            canvasElement.height = videoElement.videoHeight;
-            await hands.send({image: videoElement});
-        }, width: 640, height: 480
-    });
-    cameraUtils.start();
-
-    // Animation
-    function animate() {
-        requestAnimationFrame(animate);
-        
-        if (shakeIntensity > 0) {
-            renderer.domElement.style.transform = `translate(${(Math.random()-0.5)*shakeIntensity*40}px, ${(Math.random()-0.5)*shakeIntensity*40}px)`;
-        } else {
-            renderer.domElement.style.transform = 'translate(0,0)';
-        }
-
-        const pos = particles.geometry.attributes.position.array;
-        const col = particles.geometry.attributes.color.array;
-        const siz = particles.geometry.attributes.size.array;
-
-        for(let i=0; i<COUNT*3; i++) {
-            pos[i] += (targetPositions[i] - pos[i]) * 0.1;
-            col[i] += (targetColors[i] - col[i]) * 0.1;
-        }
-        for(let i=0; i<COUNT; i++) siz[i] += (targetSizes[i] - siz[i]) * 0.1;
-
-        particles.geometry.attributes.position.needsUpdate = true;
-        particles.geometry.attributes.color.needsUpdate = true;
-        particles.geometry.attributes.size.needsUpdate = true;
-        
-        // ROTATION LOGIC: driven by the current category
-        const cat = currentTech.indexOf(':') === -1 ? currentTech : currentTech.slice(0, currentTech.indexOf(':'));
-        if (cat === 'red') {
-            particles.rotation.z -= 0.1;
-        } else if (cat === 'purple') {
-            particles.rotation.z += 0.2; 
-            particles.rotation.y += 0.05;
-        } else if (cat === 'shrine') {
-            // FORCE UPRIGHT: Reset and freeze all rotations
-            particles.rotation.set(0, 0, 0); 
-        } else if (cat === 'shadows') {
-            // Shikigami stay upright, wheel-spin steadily (Mahoraga's adaptation)
-            particles.rotation.x = 0; particles.rotation.y = 0; particles.rotation.z += 0.07;
-        } else if (cat === 'bankai') {
-            // Vertical release: upright, slow deliberate turn
-            particles.rotation.x = 0; particles.rotation.z = 0; particles.rotation.y += 0.02;
-        } else if (cat === 'breathing') {
-            // Flowing dance-like motion for breathing forms
-            particles.rotation.y += 0.035; particles.rotation.z += 0.012;
-        } else if (cat === 'strange') {
-            // Mystical circle spin, upright
-            particles.rotation.x = 0; particles.rotation.y = 0; particles.rotation.z += 0.05;
-        } else {
-            // Default Neutral rotation
-            particles.rotation.y += 0.005;
-        }
-
-        composer.render();
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        composer.setSize(window.innerWidth, window.innerHeight);
-    });
+<script>
+(function(){
+  "use strict";
+  const QUESTIONS=[
+    "Which university will issue my degree, and is my exact programme approved for regular, on-campus study? Please give the approval reference.",
+    "How much of my total fee goes to the university and how much to NxtWave? Please give a full breakdown by year.",
+    "What are the refund and cancellation terms, with dates and amounts?",
+    "If I take a loan or EMI, who is the lender, what is the total repayable and what happens if I stop paying?",
+    "Please send placement data for the B.Tech programme only: students per batch, number placed, median salary and highest salary.",
+    "Which facilities (hostel, transport, sports, labs) are guaranteed at my campus, and where is that written?",
+    "Who teaches me? Please list the faculty for my campus with qualifications, and say which courses count for university credit.",
+    "Do you or anyone who recommended NIAT to me earn money from my admission?"
+  ];
+  const KEY="niat-checklist-v3",THEME="niat-theme-v3";
+  const list=document.getElementById("list"),note=document.getElementById("copied"),fallback=document.getElementById("fallback");
+  let saved=[];try{saved=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){}if(!Array.isArray(saved))saved=[];
+  function selected(){return [...list.querySelectorAll("input:checked")].map(x=>Number(x.value))}
+  function update(){const n=selected().length;document.getElementById("checkProgressText").textContent=n+" OF "+QUESTIONS.length+" COMPLETED";document.getElementById("checkProgress").style.width=(n/QUESTIONS.length*100)+"%";try{localStorage.setItem(KEY,JSON.stringify(selected()))}catch(e){}}
+  QUESTIONS.forEach((q,i)=>{const label=document.createElement("label"),box=document.createElement("input"),span=document.createElement("span");box.type="checkbox";box.value=String(i);box.checked=saved.includes(i);span.textContent=q;box.addEventListener("change",update);label.append(box,span);list.appendChild(label)});update();
+  function message(indices){return "Before I decide on NIAT, please answer these questions in writing:\n\n"+indices.map((v,i)=>(i+1)+". "+QUESTIONS[v]).join("\n")}
+  async function copy(text){try{if(!navigator.clipboard||!isSecureContext)throw Error();await navigator.clipboard.writeText(text);note.textContent="Copied to clipboard.";fallback.hidden=true}catch(e){fallback.value=text;fallback.hidden=false;fallback.focus();fallback.select();note.textContent="Copy is blocked here. Text selected below; copy manually."}}
+  document.getElementById("copy").addEventListener("click",()=>copy(message(QUESTIONS.map((_,i)=>i))));
+  document.getElementById("copyRemaining").addEventListener("click",()=>{const done=selected(),left=QUESTIONS.map((_,i)=>i).filter(i=>!done.includes(i));if(!left.length){note.textContent="All questions are checked.";return}copy(message(left))});
+  document.getElementById("resetChecks").addEventListener("click",()=>{if(!confirm("Clear all checklist ticks?"))return;list.querySelectorAll("input").forEach(x=>x.checked=false);update();note.textContent="Checklist reset."});
+  const search=document.getElementById("problemSearch"),filter=document.getElementById("categoryFilter"),items=[...document.querySelectorAll(".problem")];
+  function filterItems(){const q=search.value.trim().toLowerCase(),c=filter.value.toLowerCase();let count=0;items.forEach(item=>{const ok=(!q||item.textContent.toLowerCase().includes(q))&&(c==="all"||item.querySelector(".cat").textContent.trim().toLowerCase()===c);item.hidden=!ok;if(ok)count++});document.getElementById("resultCount").textContent=count+" / "+items.length+" ISSUES"}
+  search.addEventListener("input",filterItems);filter.addEventListener("change",filterItems);
+  let theme="system";try{theme=localStorage.getItem(THEME)||"system"}catch(e){}const button=document.getElementById("themeToggle");
+  function setTheme(){if(theme==="system")document.documentElement.removeAttribute("data-theme");else document.documentElement.setAttribute("data-theme",theme);button.textContent=theme==="system"?"◐ THEME":theme==="dark"?"☀ LIGHT":"☾ SYSTEM"}
+  button.addEventListener("click",()=>{theme=theme==="system"?"dark":theme==="dark"?"light":"system";try{localStorage.setItem(THEME,theme)}catch(e){}setTheme()});setTheme();
+  const bar=document.createElement("div");bar.className="reading-progress";document.body.appendChild(bar);
+  const top=document.createElement("button");top.className="backtop";top.type="button";top.textContent="↑";top.setAttribute("aria-label","Back to top");top.hidden=true;top.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));document.body.appendChild(top);
+  function scroll(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?scrollY/max*100:0)+"%";top.hidden=scrollY<500}
+  addEventListener("scroll",scroll,{passive:true});addEventListener("resize",scroll);scroll();
+})();
 </script>
-</body>
-</html>
+
+</body></html>
