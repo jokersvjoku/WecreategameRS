@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 241, 245, 249;
+  --background-rgb: 2, 8, 23;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Focus-visible accessible ring */
+:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.25);
+}
+.glow-emerald {
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+}
+.glow-red {
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.25);
+}
+
+/* Gradient border utility */
+.gradient-border {
+  position: relative;
+  background: #0f172a;
+  border-radius: 8px;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #06b6d4, #10b981);
+  z-index: -1;
+}
+
+/* Scan animation */
+@keyframes scan-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.scanning-animate {
+  animation: scan-pulse 1.5s ease-in-out infinite;
+}
+
+/* Cyber grid background */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Severity badge colors */
+.severity-critical { @apply bg-red-500/20 text-red-400 border border-red-500/30; }
+.severity-high     { @apply bg-orange-500/20 text-orange-400 border border-orange-500/30; }
+.severity-medium   { @apply bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+.severity-low      { @apply bg-blue-500/20 text-blue-400 border border-blue-500/30; }
+.severity-info     { @apply bg-gray-500/20 text-gray-400 border border-gray-500/30; }
+
+/* Prevent horizontal overflow on pre/code blocks */
+pre, code {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* Prevent table overflow */
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* Smooth fade-in animation (used with animate-in) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeIn 0.25s ease-out both;
+}
+
+/* Zoom-in for verification result */
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.zoom-in-95 {
+  animation: zoomIn 0.2s ease-out both;
+}
+
+/* Accessible visually-hidden utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
